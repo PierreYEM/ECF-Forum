@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header,
+footer {
+    min-height: 10vh;
+}
+
+#wrapper {
+    min-height: 80vh;
+    background-color: #F7F7F7;
+}
+
+body {
+    min-height: 100vh;
+    box-sizing: border-box;
+
+}
+
+a {
+    text-decoration: none !important;
+    color: white!important;
+}
