@@ -18,7 +18,7 @@ class Topic
         );
         $query->execute();
 
-        /*  $row = $query->fetch(PDO::FETCH_ASSOC); */
+     
         require('./templates/homepage.php');
        
     }

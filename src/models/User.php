@@ -3,41 +3,20 @@
 class User
 {
     public string $id;
-    public string $user_id;
-    public string $title;
-    public string $creationDate;
-    public string $content;
-    public string $author;
-    public string $category;
+    public string $name;
+    public string $mail;
+    public string $password;
 
     public DatabaseConnection $connection;
 
     public function __construct()
     {
         $this->id = "";
-        $this->user_id = "";
-        $this->title = "";
-        $this->creationDate = "";
-        $this->content = "";
-        $this->author = "";
-        $this->category = "";
+        $this->name = "";
+        $this->mail = "";
+        $this->password = "";
+
     }
-
-
-
-    public function display()
-    {
-
-        $query = $this->connection->getConnection()->prepare(
-            "SELECT  `name` FROM `topic`;"
-        );
-        $query->execute();
-
-        /*  $row = $query->fetch(PDO::FETCH_ASSOC); */
-        require('./templates/homepage.php');
-        return $row;
-    }
-
 
     public function createUser($name, $mail, $password)
     {
@@ -48,10 +27,61 @@ class User
         $query->bindParam(':mail', $mail);
         $query->bindParam(':password', $password);
         $query->execute();
-        header("Location: index.php?action=account");
+
+    }
+
+    /* Méthode pour connecter un utilisateur */
+    public function connectUser($mail, $password)
+    {
+        $query = $this->connection->getConnection()->prepare(
+            "SELECT * FROM users WHERE mail = :mail"
+        );
+        $query->bindParam(':mail', $mail);
+        $query->execute();
+
+        $result = $query->fetch();
+        $user = new User();
+        $user->id = $result["id"];
+        $user->name = $result["name"];
+        $user->mail = $result['mail'];
+        $user->password = $result['password'];
+
+        if ($query->rowCount() == 0) {
+            throw new Exception("L'utilisateur n'existe pas dans la base de données.");
+        } else {
+
+            if (password_verify($password, $user->password)) {
+                session_start();
+                $_SESSION['connecte'] = 1;
+                $_SESSION['mail'] = $user->mail;
+                $_SESSION['id'] = $user->id;
+                header("Location: index.php?action=account");
+                exit;
+            } else {
+                throw new Exception("Le mot de passe n'est pas valide.");
+            }
+        }
+
+    }
+    /* Méthode pour déconnecter un utilisateur */
+    public function disconnectUser()
+    {
+       
+        session_destroy();
+        header('Location: index.php');
         exit;
     }
 
-
-
+    /*  Méthode pour récupérer un utilisateur et ses informations */
+    public function getUser($id)
+    {
+        $query = $this->connection->getConnection()->prepare(
+            "SELECT * FROM users WHERE id = :id"
+        );
+        $query->bindParam(':id', $id);
+        $query->execute();
+        $result = $query->fetch();
+        // Variables pour modifier les informations
+        return $result;
+    }
 }

@@ -3,7 +3,10 @@
     padding: 0;
 }
 
-header,
+header {
+    max-height: 10vh;
+}
+
 footer {
     min-height: 10vh;
 }
@@ -21,5 +24,31 @@ body {
 
 a {
     text-decoration: none !important;
-    color: white!important;
+    color: white !important;
+}
+
+.fa-eye {
+    color: red;
+}
+
+
+.erreur {
+    animation: flash infinite 2s;
+}
+
+@keyframes flash {
+    0% {
+        background-color: red;
+
+    }
+
+    50% {
+        background-color: #f24b4b9f;
+
+    }
+
+    100% {
+        background-color: red;
+
+    }
 }

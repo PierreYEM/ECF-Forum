@@ -12,13 +12,13 @@
 
 <div class="container d-flex justify-content-center  connect">
     <form class=" col-10 col-md-6 col-lg-4 d-flex justify-content-center align-items-center"
-        action="index.php?action=submitConnect" method="post">
+        action="" method="post">
 
         <div class="d-flex flex-column align-items-center justify-content-between col-12 col-md-8">
             <div class="w-100">
                 <div class="mb-4  border rounded-2 position-relative">
                     <i class="fa-regular fa-envelope ps-5 position-absolute top-50 translate-middle"></i>
-                    <input name="email" type="email" class="form-control border-0 ps-5" id="exampleInputEmail1"
+                    <input name="mail" type="email" class="form-control border-0 ps-5" id="exampleInputEmail1"
                         aria-describedby="emailHelp" placeholder="email">
                 </div>
 

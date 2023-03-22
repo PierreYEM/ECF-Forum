@@ -39,10 +39,10 @@
 </head>
 
 <body>
-    <?php var_dump($_POST); ?>
+
     <header class="sticky-top bg-primary">
         <nav class="navbar navbar-expand-md navbar-light d-flex  sticky-top">
-            <div class="container-fluid px-4 d-flex justify-content-between my-3">
+            <div class="container-fluid px-4 d-flex justify-content-between">
 
                 <div class="d-flex align-items-center justify-content-center">
 
@@ -66,7 +66,7 @@
                         <?php if (isset($_SESSION) && !empty($_SESSION)) { ?>
                             <a href="./index.php?action=account" class="nav-link px-2 text-dark rounded">Mon compte</a>
                             <button type="button" class="btn btn-danger">
-                                <a href="./index.php?action=deconnect">Déconnexion</a>
+                                <a href="./index.php?action=disconnect">Déconnexion</a>
                             </button>
 
                         <?php } else { ?>
@@ -84,7 +84,7 @@
         </nav>
 
         <?php if (isset($nav))
-            $nav; ?>
+            echo $nav; ?>
 
 
     </header>
