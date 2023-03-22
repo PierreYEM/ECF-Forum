@@ -8,7 +8,10 @@ require_once('./src/lib/database.php');
 try {
     if (isset($_GET["action"]) && $_GET["action"] !== "") {
 
-        if ($_GET["action"] === "register") {
+        if ($_GET["action"] === "test_register") {
+            require('./src/controllers/test_register_controller.php');
+
+        } elseif ($_GET["action"] === "register") {
             require('./src/controllers/register_controller.php');
 
         } elseif ($_GET["action"] === "connect") {
@@ -17,11 +20,28 @@ try {
         } elseif ($_GET["action"] === "account") {
             require('./src/controllers/account_controller.php');
 
+        } elseif ($_GET["action"] === "submitModifyUser") {
+            require('./src/controllers/modify_user_controller.php');
+
         } elseif ($_GET["action"] === "disconnect") {
             require('./src/controllers/disconnect_controller.php');
 
         }
 
+    } elseif (isset($_GET['topic_id'])) {
+        if (isset($_SESSION['logged']) && $_SESSION['logged'] == 1) {
+            require('./src/controllers/topic_controller.php');
+        } else {
+            throw new Exception("Vous devez être inscrit pour accéder au contenu du site");
+        }
+
+    } elseif (isset($_GET['subject_id'])) {
+       /*  if (isset($_SESSION['logged']) && $_SESSION['logged'] == 1) { */
+            require('./src/controllers/subject_controller.php');
+        /* } else {
+            throw new Exception("Vous devez être inscrit pour accéder au contenu du site");
+        }
+ */
     } elseif (isset($_GET['close'])) {
         header('Location: index.php?action=connect');
         exit;

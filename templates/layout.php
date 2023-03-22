@@ -52,9 +52,8 @@
                 </div>
 
 
-
                 <button class="navbar-toggler z-1" type="button" data-bs-toggle="collapse" data-bs-target="#navBar"
-                    aria-controls="imotionNavBar" aria-expanded="false" aria-label="Toggle navigation">
+                    aria-controls="navBar" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -73,7 +72,7 @@
                             <button type="button" class="btn btn-outline-dark text-white"> <a
                                     href="./index.php?action=connect">Connexion</a> </button>
                             <button type="button" class="btn btn-warning"><a
-                                    href="./index.php?action=register">Inscription</a> </button>
+                                    href="./index.php?action=test_register">Inscription</a> </button>
                         <?php }
                         ; ?>
                     </div>
@@ -92,7 +91,16 @@
     <div id="wrapper" class="d-flex align-items-center ">
         <?= $content; ?>
     </div>
-
+    <?php
+    echo 'SESSION';
+    var_dump($_SESSION);
+    echo 'POST';
+    var_dump($_POST); 
+    echo 'GET';
+    var_dump($_GET);
+    echo 'Subjects';
+    var_dump($subjects);
+   ?>
 
     <footer class="z-3 d-flex flex-wrap justify-content-center align-items-center py-3 bg-primary sticky-bottom">
 

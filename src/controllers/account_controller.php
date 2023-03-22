@@ -11,6 +11,7 @@ if (isset($_SESSION) && !empty($_SESSION)) {
     $user->connection = new DatabaseConnection();
     $result = $user->getUser($userId);
 
+    
     require_once('./templates/account_template.php');
 } else {
     header("Location: index.php?action=connect");

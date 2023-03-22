@@ -6,4 +6,6 @@ require_once('src/models/topic.php');
 
 $topic = new Topic();
 $topic->connection = new DatabaseConnection();
-$topic->get_topics();
+
+$topics = $topic->get_topics();
+require('./templates/homepage_template.php');

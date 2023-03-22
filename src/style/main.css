@@ -7,6 +7,10 @@ header {
     max-height: 10vh;
 }
 
+.navbar {
+    padding: 0 !important;
+}
+
 footer {
     min-height: 10vh;
 }
