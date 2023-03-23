@@ -17,8 +17,8 @@
         data-bs-parent="#newSubject">
         <div class="accordion-body d-flex justify-content-center">
 
-          <form class="  col-md-12 col-lg-12 d-flex justify-content-center align-items-center"
-            action="" method="post" style="height: auto;">
+          <form class="  col-md-12 col-lg-12 d-flex justify-content-center align-items-center" action="" method="post"
+            style="height: auto;">
 
             <div class="d-flex flex-column align-items-center justify-content-between col-12 col-md-8">
               <p class="fw-bold text-info">Entrez votre sujet</p>
@@ -30,7 +30,9 @@
 
               </div>
 
-              <button type="submit" class="btn btn-primary ">Créer</button>
+              <button type="submit" class="btn btn-primary " <?php if (empty($_SESSION)) {
+                echo "disabled";
+              } ?>>Créer</button>
 
           </form>
 
@@ -47,10 +49,13 @@
       var_dump($subjects);
       foreach ($subjects as $key => $value) {
         ?>
-        <a href="index.php?subject_id=<?= $value['id'] ?>&cat=<?= $value['category_name'] ?>" class="text-dark">
+        <a href="index.php?subject_id=<?= $value['id'] ?>&cat=<?= $value['category_name'] ?>&subject_name=<?= $value['subject_name'] ?>"
+          class="text-dark">
           <div class="card shadow p-3 text-center w-100 my-3">
 
             <?= $value["subject_name"]; ?>
+            par "
+            <?= $value["subject_author"]; ?> "
 
           </div>
         </a>

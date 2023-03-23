@@ -1,5 +1,5 @@
 <?php
-
+/* <?php echo date("d-m-Y", strtotime($value["date"])) ?> */
 session_start();
 
 /* Appel du modèle contenant la classe Database */
@@ -29,19 +29,17 @@ try {
         }
 
     } elseif (isset($_GET['topic_id'])) {
-        if (isset($_SESSION['logged']) && $_SESSION['logged'] == 1) {
+        
             require('./src/controllers/topic_controller.php');
+        
+
+    } elseif (isset($_GET['subject_id'])) {
+        if (isset($_SESSION['logged']) && $_SESSION['logged'] == 1) {
+            require('./src/controllers/subject_controller.php');
         } else {
             throw new Exception("Vous devez être inscrit pour accéder au contenu du site");
         }
 
-    } elseif (isset($_GET['subject_id'])) {
-       /*  if (isset($_SESSION['logged']) && $_SESSION['logged'] == 1) { */
-            require('./src/controllers/subject_controller.php');
-        /* } else {
-            throw new Exception("Vous devez être inscrit pour accéder au contenu du site");
-        }
- */
     } elseif (isset($_GET['close'])) {
         header('Location: index.php?action=connect');
         exit;

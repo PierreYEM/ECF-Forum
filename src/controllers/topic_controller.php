@@ -23,9 +23,10 @@ if (isset($_POST) && !empty($_POST)) {
 
 
     $newSubject->connection = new DatabaseConnection();
-    $newSubject->category_id = $_GET["id"];
+    $newSubject->category_id = $_GET["topic_id"];
     $newSubject->user_id = $_SESSION["id"];
-    $newSubject->createSubject($newSubject->category_id, $newSubject->user_id, $newSubject->name);
+    $newSubject->author = $_SESSION["name"];
+    $newSubject->createSubject($newSubject->category_id, $newSubject->user_id, $newSubject->name, $newSubject->author);
     header("Refresh:0");
     exit();
 }
