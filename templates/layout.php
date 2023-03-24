@@ -21,13 +21,13 @@
 
 
     <!-- CDN Fontawesome -->
-    <script src="https://kit.fontawesome.com/2fe7c14157.js" crossorigin="anonymous" defer ></script>
+    <script src="https://kit.fontawesome.com/2fe7c14157.js" crossorigin="anonymous" defer></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-        
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
@@ -62,7 +62,8 @@
 
                     <div class="d-flex flex-column flex-md-row align-items-center gap-3 bg-primary">
 
-                        <a href="./index.php" class="nav-link px-2 text-dark rounded">Accueil</a>
+                        <a href="./index.php" class="nav-link px-2 text-dark rounded"><button type="button"
+                                class="btn btn-outline-light ">Accueil</button></a>
                         <?php if (isset($_SESSION) && !empty($_SESSION)) { ?>
                             <a href="./index.php?action=account" class="nav-link px-2 text-dark rounded">Mon compte</a>
                             <button type="button" class="btn btn-danger">
@@ -70,10 +71,10 @@
                             </button>
 
                         <?php } else { ?>
-                            <button type="button" class="btn btn-outline-dark text-white"> <a
-                                    href="./index.php?action=connect">Connexion</a> </button>
-                            <button type="button" class="btn btn-warning"><a
-                                    href="./index.php?action=test_register">Inscription</a> </button>
+                            <a href="./index.php?action=connect"><button type="button"
+                                    class="btn btn-outline-light ">Connexion</button></a>
+                            <a href="./index.php?action=test_register"><button type="button"
+                                    class="btn btn-warning">Inscription </button></a>
                         <?php }
                         ; ?>
                     </div>
@@ -92,18 +93,6 @@
     <div id="wrapper" class="d-flex align-items-center ">
         <?= $content; ?>
     </div>
-    <?php
-    echo 'SESSION';
-    var_dump($_SESSION);
-    echo 'POST';
-    var_dump($_POST); 
-    echo 'GET';
-    var_dump($_GET);
-    echo 'Subjects';
-    var_dump($subjects);
-    echo 'Posts';
-    var_dump($posts);
-   ?>
 
     <footer class="z-3 d-flex flex-wrap justify-content-center align-items-center py-3 bg-primary sticky-bottom">
 

@@ -16,12 +16,11 @@
   <ul class="list-group">
     <?php foreach ($subjects as $key => $value) { ?>
 
-      <li class="list-group-item d-flex justify-content-between align-items-center subject p-3" data-bs-toggle="modal"
-        data-bs-target=<?= '#' . $value['id'] ?>>
+      <li class="list-group-item d-flex justify-content-between align-items-center  p-3">
         <p class="fw-bold m-0">
           <?= "Topic : " . $value["category_name"] ?>
         </p>
-        <p class=" mx-auto my-0">
+        <p class="border rounded-3 p-2 shadow mx-auto my-0 fw-bold subject" data-bs-toggle="modal" data-bs-target=<?= '#' . $value['id'] ?>>
           <?= $value["subject_name"] ?>
         </p>
 
@@ -105,12 +104,11 @@
   <ul class="list-group">
     <?php foreach ($posts as $key => $value) { ?>
 
-      <li class="list-group-item d-flex justify-content-between align-items-center post p-3" data-bs-toggle="modal"
-        data-bs-target=<?= '#' . $value['id'] ?>>
+      <li class="list-group-item d-flex justify-content-between align-items-center p-3">
         <p class="fw-bold  m-0">
           <?= "Topic : " . $value["category_name"] ?>
         </p>
-        <p class="mx-auto  m-0">
+        <p class="border rounded-3 p-2 shadow mx-auto fw-bold m-0 post" data-bs-toggle="modal" data-bs-target=<?= '#' . $value['id'] ?>>
           <?= $value["subject_name"] ?>
         </p>
 

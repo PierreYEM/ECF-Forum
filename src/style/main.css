@@ -7,6 +7,10 @@ header {
     max-height: 10vh;
 }
 
+.container-fluid {
+    min-height: 10vh;
+}
+
 .navbar {
     padding: 0 !important;
 }
@@ -26,10 +30,8 @@ body {
 
 }
 
-a {
-    text-decoration: none !important;
-    /* color: white !important */
-    ;
+.btn-warning:hover {
+    color: white !important;
 }
 
 .fa-eye {
@@ -61,4 +63,5 @@ a {
 .post:hover,
 .subject:hover {
     cursor: pointer;
+    background-color: aquamarine;
 }

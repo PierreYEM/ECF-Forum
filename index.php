@@ -1,5 +1,5 @@
 <?php
-/* <?php echo date("d-m-Y", strtotime($value["date"])) ?> */
+
 session_start();
 
 /* Appel du modèle contenant la classe Database */

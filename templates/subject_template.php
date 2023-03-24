@@ -55,7 +55,7 @@
   <?php foreach ($posts as $key => $value) {
     ?>
 
-    <div class="card col-8">
+    <div class="card col-8 mb-5">
       <div class="card-body d-flex flex-column">
         <h5 class="card-title">
           <?= $value['post_author']; ?>
@@ -64,11 +64,15 @@
         <p class="card-text bg-body-tertiary">
           <?= $value['comment']; ?>
         </p>
-        <?php echo 'Posté le ' . date("d-m-Y", strtotime($value["date"])) . ' à ' . date("H:i:s", strtotime($value["date"])) ?>
-        <button class="btn btn-primary col-2 align-self-end me-4" type="button" data-bs-toggle="collapse"
-          data-bs-target=<?= '#' . $value['id'] ?> aria-expanded="false" aria-controls=<?= $value['id'] ?>>
-          Répondre
-        </button>
+
+        <div class='d-flex align-items-center'>
+          <p class='m-0'>
+            <?php echo 'Posté le ' . date("d-m-Y", strtotime($value["date"])) . ' à ' . date("H:i:s", strtotime($value["date"])) ?>
+          </p>
+          <button class="btn btn-primary col-2 ms-auto" type="button" data-bs-toggle="collapse" data-bs-target=<?= '#' . $value['id'] ?> aria-expanded="false" aria-controls=<?= $value['id'] ?>>
+            Répondre
+          </button>
+        </div>
 
         <div class=" collapse" id=<?= $value['id'] ?>>
           <form class=" col-md-12 col-lg-12 d-flex justify-content-center align-items-center" action="" method="post">
@@ -87,7 +91,7 @@
                 </div>
               </div>
 
-              <button type="submit" name="answer" class="btn btn-primary ">Poster</button>
+              <button type="submit" name="new_post" class="btn btn-primary ">Poster</button>
 
           </form>
         </div>
