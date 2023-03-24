@@ -34,7 +34,7 @@ if (isset($success))
     <form class="col-10  col-md-6 col-lg-4 d-flex justify-content-center align-items-center"
         action="index.php?action=register" method="post" style="height: auto;">
 
-        <div class="d-flex flex-column align-items-center justify-content-between col-12 col-md-8">
+        <div class="d-flex flex-column align-items-center justify-content-between col-12">
             <div class="w-100">
                 <div class="mb-4 border rounded-2 position-relative">
                     <i class="fa-regular fa-user ps-5 position-absolute top-50 translate-middle"></i>

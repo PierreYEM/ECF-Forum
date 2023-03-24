@@ -5,7 +5,7 @@
 <?php ob_start(); ?>
 
 <main class="container d-flex flex-column align-items-center gap-5">
-  <h1 class="display-4 fst-italic fw-bold text-center ">
+  <h1 class="display-4 fst-italic fw-bold text-center mt-5">
     <?= $topic->name ?>
   </h1>
 
@@ -54,11 +54,12 @@
         <a href="index.php?subject_id=<?= $value['id'] ?>&cat=<?= $value['category_name'] ?>&subject_name=<?= $value['subject_name'] ?>"
           class="text-dark">
           <div class="card shadow p-3 text-center w-100 my-3">
-
-            <?= $value["subject_name"]; ?>
-            par "
-            <?= $value["subject_author"]; ?> "
-
+            <p class="fw-bold">
+              <?= $value["subject_name"]; ?>
+            </p>
+            <p>par "
+              <span class="fw-bold"><?= $value["subject_author"]; ?> </span>"
+            </p>
           </div>
         </a>
 

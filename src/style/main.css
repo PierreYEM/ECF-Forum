@@ -1,10 +1,19 @@
 * {
+    font-family: 'Satisfy', cursive;
     margin: 0;
     padding: 0;
 }
 
 header {
     max-height: 10vh;
+}
+
+body {
+    overflow-y: scroll;
+}
+
+a {
+    text-decoration: none !important;
 }
 
 .container-fluid {
@@ -60,8 +69,15 @@ body {
     }
 }
 
+.post,
+.subject {
+    transition: ease-in-out 2s;
+
+}
+
 .post:hover,
 .subject:hover {
     cursor: pointer;
-    background-color: aquamarine;
+    background: linear-gradient(181deg, #3dc69c, #ebecb7);
+    transition: ease-in-out 2s;
 }

@@ -191,7 +191,7 @@
 <?php $userPosts = ob_get_clean(); ?>
 
 <?php ob_start(); ?>
-<div class="container py-5 col-10 d-flex justify-content-center flex-column align-items-center gap-5">
+<div class="container mt-5 py-5 col-10 d-flex justify-content-center flex-column align-items-center gap-5">
 
   <div class="accordion mb-5 col-5" id="newSubject">
     <div class="accordion-item">
