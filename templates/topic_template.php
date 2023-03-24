@@ -1,4 +1,8 @@
 <?php ob_start(); ?>
+<?= $_GET['cat'] ?>
+<?php $title = ob_get_clean(); ?>
+
+<?php ob_start(); ?>
 
 <main class="container d-flex flex-column align-items-center gap-5">
   <h1 class="display-4 fst-italic fw-bold text-center ">
@@ -43,11 +47,9 @@
   </div>
 
 
-  <div class="p-4 p-md-5 mb-4 rounded border shadow">
+  <div class="p-4 p-md-5 mb-4 rounded-bottom border shadow">
     <div class=" px-0 text-dark">
-      <?php echo 'subjects';
-      var_dump($subjects);
-      foreach ($subjects as $key => $value) {
+      <?php foreach ($subjects as $key => $value) {
         ?>
         <a href="index.php?subject_id=<?= $value['id'] ?>&cat=<?= $value['category_name'] ?>&subject_name=<?= $value['subject_name'] ?>"
           class="text-dark">

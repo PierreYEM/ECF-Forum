@@ -20,18 +20,16 @@ try {
         } elseif ($_GET["action"] === "account") {
             require('./src/controllers/account_controller.php');
 
-        } elseif ($_GET["action"] === "submitModifyUser") {
-            require('./src/controllers/modify_user_controller.php');
-
         } elseif ($_GET["action"] === "disconnect") {
             require('./src/controllers/disconnect_controller.php');
 
+        } else {
+            throw new Exception("ERROR 404");
         }
 
     } elseif (isset($_GET['topic_id'])) {
-        
-            require('./src/controllers/topic_controller.php');
-        
+
+        require('./src/controllers/topic_controller.php');
 
     } elseif (isset($_GET['subject_id'])) {
         if (isset($_SESSION['logged']) && $_SESSION['logged'] == 1) {
@@ -44,9 +42,11 @@ try {
         header('Location: index.php?action=connect');
         exit;
 
-    } else {
+    } elseif (empty($_GET)) {
         // Renvoyer vers la homepage
         require('./src/controllers/homepage_controller.php');
+    } else {
+        throw new Exception("ERROR 404");
     }
 } catch (Exception $e) {
     // Gestion des exceptions

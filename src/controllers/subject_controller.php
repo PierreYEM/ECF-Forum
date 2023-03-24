@@ -11,7 +11,7 @@ $subject->name = $_GET["subject_name"];
 $subject->connection = new DatabaseConnection();
 $posts = $subject->get_posts($subject->id);
 
-if (isset($_POST) && !empty($_POST)) {
+if (isset($_POST['new_post'])) {
 
     $newPost = new Post();
 
@@ -31,4 +31,8 @@ if (isset($_POST) && !empty($_POST)) {
     exit();
 }
 
+if (isset($_POST['answer'])) {
+    
+
+}
 require('./templates/subject_template.php');

@@ -21,12 +21,13 @@
 
 
     <!-- CDN Fontawesome -->
-    <script src="https://kit.fontawesome.com/2fe7c14157.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/2fe7c14157.js" crossorigin="anonymous" defer ></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+        
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
@@ -100,6 +101,8 @@
     var_dump($_GET);
     echo 'Subjects';
     var_dump($subjects);
+    echo 'Posts';
+    var_dump($posts);
    ?>
 
     <footer class="z-3 d-flex flex-wrap justify-content-center align-items-center py-3 bg-primary sticky-bottom">

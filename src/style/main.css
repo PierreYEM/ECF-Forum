@@ -28,7 +28,8 @@ body {
 
 a {
     text-decoration: none !important;
-    /* color: white !important */;
+    /* color: white !important */
+    ;
 }
 
 .fa-eye {
@@ -55,4 +56,9 @@ a {
         background-color: red;
 
     }
+}
+
+.post:hover,
+.subject:hover {
+    cursor: pointer;
 }

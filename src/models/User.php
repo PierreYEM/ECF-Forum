@@ -100,7 +100,7 @@ class User
         $query->bindParam(':password', $password);
         $query->bindParam(':id', $_SESSION['id']);
         $query->execute();
-        header("Location: ./index.php?action=account");
-        exit;
+        /* header("Location: ./index.php?action=account");
+        exit; */
     }
 }

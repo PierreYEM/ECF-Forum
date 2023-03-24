@@ -25,5 +25,27 @@ class Post
 
     }
 
+     /* Méthode pour supprimer un post */
+     public function deletePost($post_id)
+     {
+         $query = $this->connection->getConnection()->prepare(
+             "DELETE FROM `post` WHERE id=:post_id"
+         );
+         $query->bindParam(':post_id', $post_id);
+       
+         $query->execute();
+ 
+     }
 
+ /* Méthode pour modifier un post */
+ public function updatePost($modified_comment,$post_id)
+ {
+     $query = $this->connection->getConnection()->prepare(
+         "UPDATE `post` SET `comment`=:modified_comment WHERE id=:post_id"
+     );
+     $query->bindParam(':modified_comment', $modified_comment);
+     $query->bindParam(':post_id', $post_id);
+     $query->execute();
+
+ }
 }

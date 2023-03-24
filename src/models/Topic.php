@@ -20,7 +20,7 @@ class Topic
 
     }
 
-    /* Méthode pour récupérer les sujets*/
+    /* Méthode pour récupérer tous les sujets*/
     public function get_subjects($category_id)
     {
         $result = (new DatabaseConnection())->getConnection()->prepare(
@@ -38,7 +38,25 @@ class Topic
         return $result->fetchall(PDO::FETCH_ASSOC);
 
     }
-   
+
+    /* Méthode pour récupérer tous les sujets d'un utilisateur*/
+    public function get_userSubjects($user_id)
+    {
+        $result = (new DatabaseConnection())->getConnection()->prepare(
+
+            "SELECT s.*,c.category_name
+            FROM `subject` AS s
+          INNER JOIN categories AS c ON s.category_id=c.id
+            WHERE s.user_id=:id"
+
+
+        );
+        $result->bindParam(':id', $user_id);
+        $result->execute();
+
+        return $result->fetchall(PDO::FETCH_ASSOC);
+
+    }
 
 
 
