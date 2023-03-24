@@ -31,8 +31,4 @@ if (isset($_POST['new_post'])) {
     exit();
 }
 
-if (isset($_POST['answer'])) {
-    
-
-}
 require('./templates/subject_template.php');

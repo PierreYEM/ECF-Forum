@@ -102,7 +102,14 @@ if (isset($_POST["modify_post"])) {
     $editPost = new Post();
     $editPost->connection = new DatabaseConnection();
     $editPost->id = $_POST["post_id"];
-    $editPost->comment = $_POST["edit_comment"];
+
+    /* Vérification du nouveau commentaire modifié */
+    if (empty(check($_POST['edit_comment']))) {
+        throw new Exception("Veuillez remplir le champs ");
+    } else {
+        $editPost->comment = filter_var($_POST['edit_comment'], FILTER_SANITIZE_SPECIAL_CHARS);
+    }
+
     $editPost->updatePost($editPost->comment, $editPost->id);
     $modified_post = true;
 }
@@ -113,7 +120,14 @@ if (isset($_POST["modify_subject"])) {
     $editSubject = new Subject();
     $editSubject->connection = new DatabaseConnection();
     $editSubject->id = $_POST["subject_id"];
-    $editSubject->name = $_POST["edit_subject"];
+
+    /* Vérification du nouveau sujet modifié */
+    if (empty(check($_POST['edit_subject']))) {
+        throw new Exception("Veuillez remplir le champs ");
+    } else {
+        $editSubject->name = filter_var($_POST['edit_subject'], FILTER_SANITIZE_SPECIAL_CHARS);
+    }
+
     $editSubject->updateSubject($editSubject->name, $editSubject->id);
 
 }

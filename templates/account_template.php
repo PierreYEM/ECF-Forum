@@ -143,8 +143,10 @@
               </p>
             </div>
 
-            <div class="modal-footer border-top-0 d-flex flex-column">
-
+            <div class="modal-footer border-top-0 d-flex">
+              <p class="mb-0 me-auto">
+                <?php echo 'Créé le ' . date("d-m-Y", strtotime($value["date"])) . ' à ' . date("H:i:s", strtotime($value["date"])) ?>
+              </p>
               <button class="btn btn-primary align-self-end me-4 shadow" type="button" data-bs-toggle="collapse"
                 data-bs-target=<?= '#form' . $value['id'] ?> aria-expanded="false" aria-controls=<?= 'form' . $value['id'] ?>>
                 Modifier
