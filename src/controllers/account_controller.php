@@ -128,7 +128,6 @@ if (isset($_POST["modify_subject"])) {
         $editSubject->name = filter_var($_POST['edit_subject'], FILTER_SANITIZE_SPECIAL_CHARS);
     }
 
-  /*   $editSubject->name = $_POST["edit_subject"]; */
     $editSubject->updateSubject($editSubject->name, $editSubject->id);
 
 }
