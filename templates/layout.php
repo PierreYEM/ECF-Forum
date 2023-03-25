@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="Forum pour chats démoniaques">
-    <link rel="stylesheet" href="./src/style/main.css">
+
     <script src="./src/script/script.js" defer></script>
 
     <!-- Fontstyle Satisfy -->
@@ -17,7 +17,7 @@
     <!-- CDN Bootstrap parce que je le vaux bien -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="./src/style/main.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"
         defer>
@@ -45,14 +45,14 @@
 
 <body>
 
-    <header class="sticky-top bg-primary">
+    <header class="sticky-top bg-header">
         <nav class="navbar navbar-expand-md navbar-light d-flex  sticky-top">
             <div class="container-fluid px-4 d-flex justify-content-between">
 
                 <div class="d-flex align-items-center justify-content-center">
 
-                    <div class="ms-3  text-white fw-bold fs-2 fst-italic">
-                        Chez Cats'eyes
+                    <div class="ms-3  text-primary text-shadow fw-bold fs-2 fst-italic">
+                        Bla Bla Cat
                     </div>
                 </div>
 
@@ -64,7 +64,7 @@
 
                 <div class="collapse navbar-collapse justify-content-end" id="navBar">
 
-                    <div class="d-flex flex-column flex-md-row align-items-center gap-3 bg-primary">
+                    <div class="d-flex flex-column flex-md-row align-items-center gap-3">
 
                         <a href="./index.php" class="nav-link px-2 text-dark rounded"><button type="button"
                                 class="btn btn-outline-light ">Accueil</button></a>
@@ -97,8 +97,13 @@
     <div id="wrapper" class="d-flex align-items-center ">
         <?= $content; ?>
     </div>
-
-    <footer class="z-3 d-flex flex-wrap justify-content-center align-items-center py-3 bg-primary sticky-bottom">
+    <?php echo 'CATEGORIES';
+    var_dump($categories);
+    echo 'TOPICS';
+    var_dump($topics);
+    echo 'GET';
+    var_dump($_GET); ?>
+    <footer class="z-3 d-flex flex-wrap justify-content-center align-items-center py-3 bg-footer sticky-bottom">
 
     </footer>
 </body>

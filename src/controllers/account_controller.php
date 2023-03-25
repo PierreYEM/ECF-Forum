@@ -87,12 +87,12 @@ if (isset($_POST["delete_post"])) {
 }
 
 /* Supprimer un sujet */
-if (isset($_POST["delete_subject"])) {
+if (isset($_POST["delete_topic"])) {
 
-    $deleteSubject = new Subject();
-    $deleteSubject->connection = new DatabaseConnection();
-    $deleteSubject->id = $_POST["subject_id"];
-    $deleteSubject->deleteSubject($deleteSubject->id);
+    $deleteTopic = new Topic();
+    $deleteTopic->connection = new DatabaseConnection();
+    $deleteTopic->topic_id = $_POST["topic_id"];
+    $deleteTopic->deleteTopic($deleteTopic->topic_id);
 
 }
 
@@ -114,27 +114,27 @@ if (isset($_POST["modify_post"])) {
     $modified_post = true;
 }
 
-/* Modifier un sujet */
-if (isset($_POST["modify_subject"])) {
+/* Modifier un topic */
+if (isset($_POST["modify_topic"])) {
 
-    $editSubject = new Subject();
-    $editSubject->connection = new DatabaseConnection();
-    $editSubject->id = $_POST["subject_id"];
+    $editTopic = new Topic();
+    $editTopic->connection = new DatabaseConnection();
+    $editTopic->topic_id = $_POST["topic_id"];
 
     /* Vérification du nouveau sujet modifié */
-    if (empty(check($_POST['edit_subject']))) {
+    if (empty(check($_POST['edit_topic']))) {
         throw new Exception("Veuillez remplir le champs ");
     } else {
-        $editSubject->name = filter_var($_POST['edit_subject'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $editTopic->topic_name = filter_var($_POST['edit_topic'], FILTER_SANITIZE_SPECIAL_CHARS);
     }
 
-    $editSubject->updateSubject($editSubject->name, $editSubject->id);
+    $editTopic->updatetopic($editTopic->topic_name, $editTopic->topic_id);
 
 }
 
 $topic = new Topic();
 $topic->connection = new DatabaseConnection();
-$subjects = $topic->get_userSubjects($user->id);
+$topics = $topic->get_userTopics($user->id);
 
 $subject = new Subject();
 $subject->connection = new DatabaseConnection();

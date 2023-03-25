@@ -5,19 +5,43 @@ Accueil
 <?php ob_start(); ?>
 
 <main class="container">
-    <h1 class="display-4 fst-italic fw-bold text-center ">Tous les topics</h1>
 
-    <div class="p-4 p-md-5 mb-4 rounded border shadow">
-        <div class=" px-0 text-dark">
-            <?php foreach ($topics as $key => $value) {
+
+    <div class="p-4 p-md-4 rounded border shadow">
+        <h1 class="display-4 fst-italic fw-bold text-center mb-4">Toutes les catégories</h1>
+        <div class=" px-0 col-lg-8 mx-auto text-dark accordion" id="categories">
+            <?php foreach ($categories as $key => $value) {
                 ?>
-                <a href="index.php?topic_id=<?= $value['id'] ?>&cat=<?= $value["category_name"] ?>" class="text-dark">
-                    <div class="card shadow p-3 text-center w-100 my-3">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button position-relative collapsed shadow" type="button"
+                            data-bs-toggle="collapse" data-bs-target="<?= '#' . $value['id'] ?>" aria-expanded="true"
+                            aria-controls="collapseOne">
+                            <h3 class='fs-5 mb-0 position-absolute start-50 top-50 translate-middle'>
+                                <?= $value['category_name'] ?>
+                            </h3>
+                        </button>
+                    </h2>
+                    <!-- partie étendue -->
+                    <div id="<?= $value['id'] ?>" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            <?php foreach ($topics as $key => $value2) {
+                                if ($value['id'] == $value2['category_id']) { ?>
+                                    <a href="index.php?topic_id=<?= $value2['id'] ?>&cat=<?= $value2["category_name"] ?>"
+                                        class="text-dark">
+                                        <div class="card shadow p-3 text-center w-100 my-3">
 
-                        <?= $value["category_name"]; ?>
+                                            <?= $value2["topic_name"]; ?>
 
+                                        </div>
+                                    </a>
+                                <?php }
+                            }
+                            ; ?>
+                        </div>
                     </div>
-                </a>
+                </div>
+
 
                 <?php
             }

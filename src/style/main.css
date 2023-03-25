@@ -1,3 +1,8 @@
+:root {
+    --bs-primary-rgb: 183, 221, 245;
+    --bs-secondary-rgb: 255, 193, 7;
+}
+
 * {
     font-family: 'Satisfy', cursive;
     margin: 0;
@@ -6,6 +11,18 @@
 
 header {
     max-height: 10vh;
+}
+
+.bg-header {
+    background-color: #56cca0;
+}
+
+.bg-footer {
+    background-color: #dde9b5;
+}
+
+.text-shadow {
+    text-shadow: 0px 0px 8px black;
 }
 
 body {
@@ -78,11 +95,21 @@ body {
 .post:hover,
 .subject:hover {
     cursor: pointer;
-    background: linear-gradient(181deg, #3dc69c, #ebecb7);
+    background: linear-gradient(181deg, #3dc69c, #ebecb7, #FFFFFF);
     transition: ease-in-out 2s;
 }
+
 
 .accordion-button:not(.collapsed) {
     background: linear-gradient(181deg, #3dc69c, #ebecb7);
 
+}
+
+.card {
+    transition: ease-in-out 0.3s;
+}
+
+.card:hover {
+    background-color: aquamarine;
+    transition: ease-in-out 0.3s;
 }
