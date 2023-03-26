@@ -97,12 +97,21 @@
     <div id="wrapper" class="d-flex align-items-center ">
         <?= $content; ?>
     </div>
-    <?php echo 'CATEGORIES';
+    <?php
+    echo 'SESSION';
+    var_dump($_SESSION);
+    echo 'CATEGORIES';
     var_dump($categories);
     echo 'TOPICS';
     var_dump($topics);
+    echo 'SUBJECTS';
+    var_dump($subjects);
+    echo 'Posts';
+    var_dump($posts);
     echo 'GET';
-    var_dump($_GET); ?>
+    var_dump($_GET);
+    echo 'POST';
+    var_dump($_POST); ?>
     <footer class="z-3 d-flex flex-wrap justify-content-center align-items-center py-3 bg-footer sticky-bottom">
 
     </footer>

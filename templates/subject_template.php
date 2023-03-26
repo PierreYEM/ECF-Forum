@@ -6,7 +6,7 @@
 
 <main class="container d-flex flex-column align-items-center gap-5">
   <h1 class="display-4 fst-italic fw-bold text-center ">
-    <?= $subject->name ?>
+    <?= $post->subject_name ?>
   </h1>
 
   <div class="accordion mb-5 col-6" id="newSubject">
@@ -33,7 +33,7 @@
                   <label for="commentaire" class="fw-bold text-info">Mon commentaire :</label>
                   <div class="form-floating">
                     <textarea class="form-control" placeholder="Leave a comment here" id="commentaire"
-                      name="commentaire"></textarea>
+                      name="comment"></textarea>
                     <label for="floatingTextarea" class="text-body-tertiary ">Mon commentaire</label>
                   </div>
 
@@ -60,7 +60,32 @@
         <h5 class="card-title">
           <?= $value['post_author']; ?>
         </h5>
+        <?php if (isset($value["parent_post_id"]) && $value["parent_post_id"] > 0) {
+          foreach ($posts as $key2 => $value2) {
+            if ($value['parent_post_id'] == $value2['id']) { ?>
+              <p>En réponse à : </p>
+              <div class="card col-8 mb-5">
+                <div class="card-body d-flex flex-column">
 
+                  <h5 class="card-title">
+                    <?= $value2['post_author']; ?>
+                  </h5>
+                  <p class="card-text bg-body-tertiary">
+                    <?= $value2['comment']; ?>
+                  </p>
+
+                  <div class='d-flex align-items-center'>
+                    <p class='m-0'>
+                      <?php echo 'Posté le ' . date("d-m-Y", strtotime($value["date"])) . ' à ' . date("H:i:s", strtotime($value2["date"])) ?>
+                    </p>
+
+                  </div>
+                </div>
+              </div>
+            <?php }
+          }
+        }
+        ; ?>
         <p class="card-text bg-body-tertiary">
           <?= $value['comment']; ?>
         </p>
@@ -73,7 +98,7 @@
             Répondre
           </button>
         </div>
-
+        <!-- Partie étendue -->
         <div class=" collapse" id=<?= $value['id'] ?>>
           <form class=" col-md-12 col-lg-12 d-flex justify-content-center align-items-center" action="" method="post">
 
@@ -85,13 +110,13 @@
                   <label for="commentaire" class="fw-bold text-info">Ma réponse :</label>
                   <div class="form-floating">
                     <textarea class="form-control" placeholder="Leave a comment here" id="commentaire"
-                      name="commentaire"></textarea>
+                      name="comment"></textarea>
                     <label for="floatingTextarea" class="text-body-tertiary ">Mon commentaire</label>
                   </div>
                 </div>
               </div>
-
-              <button type="submit" name="new_post" class="btn btn-primary ">Poster</button>
+              <input type="hidden" name="parent_post_id" value="<?= $value["id"] ?>">
+              <button type="submit" name="response" class="btn btn-primary ">Poster</button>
 
           </form>
         </div>

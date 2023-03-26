@@ -12,6 +12,8 @@ Accueil
         <div class=" px-0 col-lg-8 mx-auto text-dark accordion" id="categories">
             <?php foreach ($categories as $key => $value) {
                 ?>
+
+                <!-- Formulaire de création de topic -->
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button position-relative collapsed shadow" type="button"
@@ -25,9 +27,59 @@ Accueil
                     <!-- partie étendue -->
                     <div id="<?= $value['id'] ?>" class="accordion-collapse collapse">
                         <div class="accordion-body">
+
+                            <div class="accordion mb-5 col-6 mx-auto" id="newSubject">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header  " id="headingOne">
+                                        <button class="accordion-button text-center fs-5 fw-bold collapsed shadow"
+                                            type="button" data-bs-toggle="collapse" data-bs-target="#formSubject"
+                                            aria-expanded="true" aria-controls="collapseOne">
+                                            Nouveau topic
+                                        </button>
+                                    </h2>
+                                    <!-- Partie étendue -->
+                                    <div id="formSubject" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                                        data-bs-parent="#newSubject">
+                                        <div class="accordion-body d-flex justify-content-center">
+
+                                            <form
+                                                class="  col-md-12 col-lg-12 d-flex justify-content-center align-items-center"
+                                                action="" method="post" style="height: auto;">
+                                                <fieldset
+                                                    class="col-12 d-flex flex-column align-items-center justify-content-center" <?php if (empty($_SESSION)) {
+                                                        echo "disabled";
+                                                    } ?>>
+                                                    <div
+                                                        class="d-flex flex-column align-items-center justify-content-between col-12">
+                                                        <p class="fw-bold text-info">Entrez votre topic</p>
+                                                        <div class="w-100">
+                                                            <div class="mb-4 border rounded-2 position-relative">
+                                                                <input name="topic_name" type="text"
+                                                                    class="form-control border-0 col-lg-4" id="name"
+                                                                    aria-describedby="pseudoInput"
+                                                                    placeholder="Nom du topic">
+                                                                <input type="hidden" name="category_id"
+                                                                    value="<?= $value['id'] ?>">
+                                                            </div>
+
+                                                        </div>
+
+                                                        <button type="submit" name="new_topic"
+                                                            class="btn btn-primary ">Créer</button>
+                                                    </div>
+                                                </fieldset>
+                                            </form>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
                             <?php foreach ($topics as $key => $value2) {
                                 if ($value['id'] == $value2['category_id']) { ?>
-                                    <a href="index.php?topic_id=<?= $value2['id'] ?>&cat=<?= $value2["category_name"] ?>"
+                                    <a href="index.php?topic_id=<?= $value2['id'] ?>&topic_name=<?= $value2['topic_name'] ?>"
                                         class="text-dark">
                                         <div class="card shadow p-3 text-center w-100 my-3">
 

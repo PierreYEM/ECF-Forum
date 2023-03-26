@@ -41,6 +41,9 @@ class User
         $query->execute();
 
         $result = $query->fetch(PDO::FETCH_ASSOC);
+        if ($result == null) {
+            throw new Exception("Profil inexistant");
+        }
         $user = new User();
         $user->id = $result["id"];
         $user->name = $result["user_name"];

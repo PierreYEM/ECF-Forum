@@ -4,6 +4,10 @@ require_once('./src/models/User.php');
 /* Appel du modèle functions pour vérifier les inputs */
 require_once('./src/lib/functions.php');
 
+if (isset($_SESSION['logged']) && $_SESSION['logged'] = 1) {
+    throw new Exception("Vous êtes déjà connecté");
+}
+
 if (isset($_POST) && !empty($_POST)) {
     $user = new User();
 

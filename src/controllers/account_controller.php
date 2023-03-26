@@ -19,6 +19,8 @@ if (isset($_SESSION) && !empty($_SESSION)) {
     $data = $user->getUser($user->id);
     $user->name = $data["user_name"];
     $user->mail = $data["mail"];
+
+
 } else {
     header("Location: index.php?action=connect");
     exit;
@@ -134,11 +136,16 @@ if (isset($_POST["modify_topic"])) {
 
 $topic = new Topic();
 $topic->connection = new DatabaseConnection();
-$topics = $topic->get_userTopics($user->id);
+$topics = $topic->get_topics_by_user($user->id);
 
 $subject = new Subject();
 $subject->connection = new DatabaseConnection();
-$posts = $subject->get_userPosts($user->id);
+$subjects = $subject->get_subjects_by_user($user->id);
+
+$post = new Post();
+$post->connection = new DatabaseConnection();
+$posts = $post->get_posts_by_user($user->id);
+$globalPosts=$post->get_posts();
 
 /* Appel à la vue */
 require_once('./templates/account_template.php');

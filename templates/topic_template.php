@@ -4,9 +4,9 @@
 
 <?php ob_start(); ?>
 
-<main class="container d-flex flex-column align-items-center gap-5">
+<main class="container d-flex flex-column align-items-center gap-4">
   <h1 class="display-4 fst-italic fw-bold text-center mt-5">
-    <?= $topic->name ?>
+    <?= $subject->topic_name ?>
   </h1>
 
   <div class="accordion mb-5 col-6" id="newSubject">
@@ -17,6 +17,7 @@
           Nouveau sujet
         </button>
       </h2>
+      <!-- Partie étendue -->
       <div id="formSubject" class="accordion-collapse collapse" aria-labelledby="headingOne"
         data-bs-parent="#newSubject">
         <div class="accordion-body d-flex justify-content-center">
@@ -29,15 +30,15 @@
               <div class="w-100">
                 <div class="mb-4 border rounded-2 position-relative">
                   <input name="subject_name" type="text" class="form-control border-0 col-lg-4" id="name"
-                    aria-describedby="pseudoInput" placeholder="name">
+                    aria-describedby="pseudoInput" placeholder="Nom du sujet">
                 </div>
 
               </div>
 
-              <button type="submit" class="btn btn-primary " <?php if (empty($_SESSION)) {
+              <button type="submit" name="new_subject" class="btn btn-primary " <?php if (empty($_SESSION)) {
                 echo "disabled";
               } ?>>Créer</button>
-
+            </div>
           </form>
 
 
@@ -47,18 +48,21 @@
   </div>
 
 
-  <div class="p-4 p-md-5 mb-4 rounded-bottom border shadow">
-    <div class=" px-0 text-dark">
+  <div class="col-12 p-4 mb-4 rounded-bottom border shadow">
+    <h2 class="text-center mb-4 fw-bold fs-2">Tous les sujets</h2>
+    <div class=" px-0 col-lg-8 mx-auto text-dark">
       <?php foreach ($subjects as $key => $value) {
         ?>
-        <a href="index.php?subject_id=<?= $value['id'] ?>&cat=<?= $value['category_name'] ?>&subject_name=<?= $value['subject_name'] ?>"
+        <a href="index.php?subject_id=<?= $value['id'] ?>&subject_name=<?= $value['subject_name'] ?>"
           class="text-dark">
-          <div class="card shadow p-3 text-center w-100 my-3">
-            <p class="fw-bold">
+          <div class="card shadow p-3 text-center">
+            <h3 class="fw-bold fs-5 m-0">
               <?= $value["subject_name"]; ?>
-            </p>
-            <p>par "
-              <span class="fw-bold"><?= $value["subject_author"]; ?> </span>"
+            </h3>
+            <p class="m-0">par "
+              <span class="fw-bold">
+                <?= $value["subject_author"]; ?>
+              </span>"
             </p>
           </div>
         </a>

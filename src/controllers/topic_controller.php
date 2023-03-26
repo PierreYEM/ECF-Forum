@@ -1,32 +1,26 @@
 <?php
 
-require_once('./src/models/Topic.php');
 require_once('./src/models/Subject.php');
 require_once('./src/lib/functions.php');
 
 /* Obtention de tous les sujets de la catégorie */
-$topic = new Topic();
-$topic->id = $_GET["topic_id"];
-$topic->name = $_GET["cat"];
-$topic->connection = new DatabaseConnection();
-$subjects = $topic->get_subjects($topic->id);
+$subject = new Subject();
+$subject->connection = new DatabaseConnection();
+$subject->topic_id = $_GET["topic_id"];
+$subject->topic_name = $_GET["topic_name"];
+$subject->user_id = $_SESSION["id"];
+$subject->subject_author = $_SESSION["name"];
+$subjects = $subject->get_subjects_by_topic($subject->topic_id);
 
-if (isset($_POST) && !empty($_POST)) {
-
-    $newSubject = new Subject();
+if (isset($_POST['new_subject'])) {
 
     if (empty(check($_POST['subject_name']))) {
         throw new Exception("Un sujet est requis");
     } else {
-        $newSubject->name = filter_var($_POST['subject_name'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $subject->subject_name = filter_var($_POST['subject_name'], FILTER_SANITIZE_SPECIAL_CHARS);
     }
 
-
-    $newSubject->connection = new DatabaseConnection();
-    $newSubject->category_id = $_GET["topic_id"];
-    $newSubject->user_id = $_SESSION["id"];
-    $newSubject->author = $_SESSION["name"];
-    $newSubject->createSubject($newSubject->category_id, $newSubject->user_id, $newSubject->name, $newSubject->author);
+    $subject->createSubject($subject->user_id, $subject->topic_id, $subject->subject_name, $subject->subject_author);
     header("Refresh:0");
     exit();
 }
