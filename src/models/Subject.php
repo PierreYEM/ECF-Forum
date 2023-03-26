@@ -78,7 +78,7 @@ class Subject extends Topic
     public function updateSubject($subject_name, $subject_id)
     {
         $query = $this->connection->getConnection()->prepare(
-            "UPDATE `subject` SET `subject_name`=:subject_name WHERE id=:subject_id"
+            "UPDATE `subjects` SET `subject_name`=:subject_name WHERE id=:subject_id"
         );
         $query->bindParam(':subject_name', $subject_name);
         $query->bindParam(':subject_id', $subject_id);

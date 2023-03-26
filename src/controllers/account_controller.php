@@ -26,6 +26,20 @@ if (isset($_SESSION) && !empty($_SESSION)) {
     exit;
 }
 
+$topic = new Topic();
+$topic->connection = new DatabaseConnection();
+$topics = $topic->get_topics_by_user($user->id);
+
+$subject = new Subject();
+$subject->connection = new DatabaseConnection();
+$subjects = $subject->get_subjects_by_user($user->id);
+
+$post = new Post();
+$post->connection = new DatabaseConnection();
+$posts = $post->get_posts_by_user($user->id);
+$globalPosts = $post->get_posts();
+
+
 /* Instructions pour modification de profil */
 if (isset($_POST["modify_profil"])) {
 
@@ -78,74 +92,85 @@ if (isset($_POST["modify_profil"])) {
     exit();
 }
 
-/* Supprimer un post */
-if (isset($_POST["delete_post"])) {
+/* Supprimer un topic */
+if (isset($_POST["delete_topic"])) {
 
-    $post = new Post();
-    $post->connection = new DatabaseConnection();
-    $post->id = $_POST["post_id"];
-    $post->deletePost($post->id);
-
+    $topic->topic_id = $_POST["topic_id"];
+    $topic->deleteTopic($topic->topic_id);
+    header("Refresh:0");
+    exit();
 }
 
 /* Supprimer un sujet */
-if (isset($_POST["delete_topic"])) {
+if (isset($_POST["delete_subject"])) {
 
-    $deleteTopic = new Topic();
-    $deleteTopic->connection = new DatabaseConnection();
-    $deleteTopic->topic_id = $_POST["topic_id"];
-    $deleteTopic->deleteTopic($deleteTopic->topic_id);
-
+    $subject->subject_id = $_POST["subject_id"];
+    $subject->deleteSubject($subject->subject_id);
+    header("Refresh:0");
+    exit();
 }
 
-/* Modifier un post */
-if (isset($_POST["modify_post"])) {
+/* Supprimer un post */
+if (isset($_POST["delete_post"])) {
 
-    $editPost = new Post();
-    $editPost->connection = new DatabaseConnection();
-    $editPost->id = $_POST["post_id"];
-
-    /* Vérification du nouveau commentaire modifié */
-    if (empty(check($_POST['edit_comment']))) {
-        throw new Exception("Veuillez remplir le champs ");
-    } else {
-        $editPost->comment = filter_var($_POST['edit_comment'], FILTER_SANITIZE_SPECIAL_CHARS);
-    }
-
-    $editPost->updatePost($editPost->comment, $editPost->id);
-    $modified_post = true;
+    $post->post_id = $_POST["post_id"];
+    $post->deletePost($post->post_id);
+    header("Refresh:0");
+    exit();
 }
 
 /* Modifier un topic */
 if (isset($_POST["modify_topic"])) {
 
-    $editTopic = new Topic();
-    $editTopic->connection = new DatabaseConnection();
-    $editTopic->topic_id = $_POST["topic_id"];
+    $topic->topic_id = $_POST["topic_id"];
 
-    /* Vérification du nouveau sujet modifié */
+    /* Vérification du nouveau topic modifié */
     if (empty(check($_POST['edit_topic']))) {
         throw new Exception("Veuillez remplir le champs ");
     } else {
-        $editTopic->topic_name = filter_var($_POST['edit_topic'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $topic->topic_name = filter_var($_POST['edit_topic'], FILTER_SANITIZE_SPECIAL_CHARS);
     }
 
-    $editTopic->updatetopic($editTopic->topic_name, $editTopic->topic_id);
-
+    $topic->updateTopic($topic->topic_name, $topic->topic_id);
+    header("Refresh:0");
+    exit();
 }
 
-$topic = new Topic();
-$topic->connection = new DatabaseConnection();
-$topics = $topic->get_topics_by_user($user->id);
+/* Modifier un sujet */
+if (isset($_POST["modify_subject"])) {
 
-$subject = new Subject();
-$subject->connection = new DatabaseConnection();
-$subjects = $subject->get_subjects_by_user($user->id);
+    $subject->subject_id = $_POST["subject_id"];
 
-$post = new Post();
-$post->connection = new DatabaseConnection();
-$posts = $post->get_posts_by_user($user->id);
-$globalPosts=$post->get_posts();
+    /* Vérification du nouveau sujet modifié */
+    if (empty(check($_POST['edit_subject']))) {
+        throw new Exception("Veuillez remplir le champs ");
+    } else {
+        $subject->subject_name = filter_var($_POST['edit_subject'], FILTER_SANITIZE_SPECIAL_CHARS);
+    }
+
+    $subject->updateSubject($subject->subject_name, $subject->subject_id);
+    header("Refresh:0");
+    exit();
+}
+
+/* Modifier un post */
+if (isset($_POST["modify_post"])) {
+
+    $post->post_id = $_POST["post_id"];
+
+    /* Vérification du nouveau commentaire modifié */
+    if (empty(check($_POST['edit_comment']))) {
+        throw new Exception("Veuillez remplir le champs ");
+    } else {
+        $post->comment = filter_var($_POST['edit_comment'], FILTER_SANITIZE_SPECIAL_CHARS);
+    }
+
+    $post->updatePost($post->comment, $post->post_id);
+ 
+    header("Refresh:0");
+    exit();
+}
+
 
 /* Appel à la vue */
 require_once('./templates/account_template.php');

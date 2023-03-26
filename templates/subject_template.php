@@ -76,7 +76,7 @@
 
                   <div class='d-flex align-items-center'>
                     <p class='m-0'>
-                      <?php echo 'Posté le ' . date("d-m-Y", strtotime($value["date"])) . ' à ' . date("H:i:s", strtotime($value2["date"])) ?>
+                      <?php echo 'Posté le ' . date("d-m-Y", strtotime($value2["date"])) . ' à ' . date("H:i:s", strtotime($value2["date"])) ?>
                     </p>
 
                   </div>

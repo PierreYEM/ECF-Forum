@@ -25,34 +25,34 @@
         </p>
 
         <form action="" method="post" class=" me-3">
-          <input type="hidden" name="subject_id" value=<?= $value['id'] ?>>
-          <button type="submit" name="delete_subject" class="btn btn-danger shadow"
+          <input type="hidden" name="topic_id" value=<?= $value['id'] ?>>
+          <button type="submit" name="delete_topic" class="btn btn-danger shadow"
             onclick="return confirm('Êtes vous sur de vouloir supprimer ?')">Supprimer</button>
         </form>
       </li>
 
       <!-- Modale -->
-      <div class="modal fade" id=<?= $value['id'] ?> tabindex="-1" aria-labelledby=<?= $value['subject_name'] ?>
+      <div class="modal fade" id=<?= $value['id'] ?> tabindex="-1" aria-labelledby=<?= $value['topic_name'] ?>
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
           <div class="modal-content">
             <div class="modal-header border-bottom-0 ">
               <div class="ms-auto">
-                <h3 class="modal-title fs-3 ms-auto" id=<?= $value['category_name'] ?>>Topic : <?= $value['category_name'] ?></h3>
+                <h3 class="modal-title fs-3 ms-auto" id=<?= $value['category_name'] ?>>Catégorie : <?= $value['category_name'] ?></h3>
               </div>
               <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body d-flex flex-column align-items-center gap-3">
 
               <h4 class="fs-5 text-center">
-                <?= $value['subject_name'] ?>
+                <?= $value['topic_name'] ?>
               </h4>
 
             </div>
             <div class="modal-footer border-top-0 d-flex flex-column">
               <div class="d-flex col-12 align-items-center px-3">
                 <p class="mb-0 me-auto">
-                  <?php echo 'Créé le ' . date("d-m-Y", strtotime($value["subject_date"])) . ' à ' . date("H:i:s", strtotime($value["subject_date"])) ?>
+                  <?php echo 'Créé le ' . date("d-m-Y", strtotime($value["topic_date"])) . ' à ' . date("H:i:s", strtotime($value["topic_date"])) ?>
                 </p>
                 <button class="btn btn-primary ms-auto shadow" type="button" data-bs-toggle="collapse"
                   data-bs-target=<?= '#form' . $value['id'] ?> aria-expanded="false" aria-controls=<?= 'form' . $value['id'] ?>>
@@ -62,21 +62,21 @@
 
               <div class=" collapse col-10" id=<?= 'form' . $value['id'] ?>>
                 <form class="  col-md-12 col-lg-12 d-flex justify-content-center align-items-center" action=""
-                  method="post" style="height: auto;">
+                  method="post" >
 
                   <div class="d-flex flex-column align-items-center justify-content-between col-12 col-md-8">
-                    <p class="fw-bold text-info">Modifiez votre sujet</p>
+                    <p class="fw-bold text-info">Modifiez votre topic</p>
                     <div class="w-100">
                       <div class="mb-4 border rounded-2 position-relative">
-                        <input name="edit_subject" type="text" class="form-control border-0 col-lg-4" id="name"
+                        <input name="edit_topic" type="text" class="form-control border-0 col-lg-4" id="name"
                           aria-describedby="edit_subject" placeholder="votre sujet modifié"
-                          value="<?= $value['subject_name'] ?>">
-                        <input type="hidden" name="subject_id" value=<?= $value['id'] ?>>
+                          value="<?= $value['topic_name'] ?>">
+                        <input type="hidden" name="topic_id" value=<?= $value['id'] ?>>
                       </div>
 
                     </div>
 
-                    <button type="submit" name="modify_subject" class="btn btn-primary shadow" <?php if (empty($_SESSION)) {
+                    <button type="submit" name="modify_topic" class="btn btn-primary shadow" <?php if (empty($_SESSION)) {
                       echo "disabled";
                     } ?>>Valider</button>
                   </div>
@@ -126,7 +126,7 @@
           <div class="modal-content">
             <div class="modal-header border-bottom-0 ">
               <div class="ms-auto">
-                <h3 class="modal-title fs-3 ms-auto" id=<?= $value['category_name'] ?>>Topic : <?= $value['category_name'] ?></h3>
+                <h3 class="modal-title fs-3 ms-auto" id=<?= $value['category_name'] ?>>Catégorie : <?= $value['category_name'] ?></h3>
               </div>
               <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -215,7 +215,7 @@
           <div class="modal-content">
             <div class="modal-header border-bottom-0 ">
               <div class="ms-auto">
-                <h3 class="modal-title fs-3 ms-auto" id=<?= $value['category_name'] ?>>Topic : <?= $value['category_name'] ?></h3>
+                <h3 class="modal-title fs-3 ms-auto" id=<?= $value['category_name'] ?>>Catégorie : <?= $value['category_name'] ?></h3>
               </div>
               <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -241,7 +241,7 @@
 
                         <div class='d-flex align-items-center'>
                           <p class='m-0'>
-                            <?php echo 'Posté le ' . date("d-m-Y", strtotime($value["date"])) . ' à ' . date("H:i:s", strtotime($value2["date"])) ?>
+                            <?php echo 'Posté le ' . date("d-m-Y", strtotime($value2["date"])) . ' à ' . date("H:i:s", strtotime($value2["date"])) ?>
                           </p>
 
                         </div>
