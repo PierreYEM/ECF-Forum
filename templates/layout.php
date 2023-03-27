@@ -69,6 +69,8 @@
                         <a href="./index.php" class="nav-link px-2 text-dark rounded"><button type="button"
                                 class="btn btn-outline-light ">Accueil</button></a>
                         <?php if (isset($_SESSION) && !empty($_SESSION)) { ?>
+                            
+                            
                             <a href="./index.php?action=account" class="nav-link px-2 text-dark rounded">Mon compte</a>
                             <button type="button" class="btn btn-danger">
                                 <a href="./index.php?action=disconnect">Déconnexion</a>
