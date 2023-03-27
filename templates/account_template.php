@@ -35,7 +35,7 @@
       <div class="modal fade" id=<?= $value['id'] ?> tabindex="-1" aria-labelledby=<?= $value['topic_name'] ?>
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-          <div class="modal-content">
+          <div class="modal-content border-0">
             <div class="modal-header border-bottom-0 ">
               <div class="ms-auto">
                 <h3 class="modal-title fs-3 ms-auto" id=<?= $value['category_name'] ?>>Catégorie : <?= $value['category_name'] ?></h3>
@@ -62,7 +62,7 @@
 
               <div class=" collapse col-10" id=<?= 'form' . $value['id'] ?>>
                 <form class="  col-md-12 col-lg-12 d-flex justify-content-center align-items-center" action=""
-                  method="post" >
+                  method="post">
 
                   <div class="d-flex flex-column align-items-center justify-content-between col-12 col-md-8">
                     <p class="fw-bold text-info">Modifiez votre topic</p>
@@ -123,7 +123,7 @@
       <div class="modal fade" id=<?= $value['id'] ?> tabindex="-1" aria-labelledby=<?= $value['subject_name'] ?>
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-          <div class="modal-content">
+          <div class="modal-content border-0">
             <div class="modal-header border-bottom-0 ">
               <div class="ms-auto">
                 <h3 class="modal-title fs-3 ms-auto" id=<?= $value['category_name'] ?>>Catégorie : <?= $value['category_name'] ?></h3>
@@ -131,10 +131,12 @@
               <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body d-flex flex-column align-items-center gap-3">
-
               <h4 class="fs-5 text-center">
-                <?= $value['subject_name'] ?>
+                <?= 'Topic : ' . $value['topic_name'] ?>
               </h4>
+              <h5 class="fs-5 text-center">
+                <?= 'Sujet : ' . $value['subject_name'] ?>
+              </h5>
 
             </div>
             <div class="modal-footer border-top-0 d-flex flex-column">
@@ -212,7 +214,7 @@
       <div class="modal fade" id=<?= $value['id'] ?> tabindex="-1" aria-labelledby=<?= $value['subject_name'] ?>
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-          <div class="modal-content">
+          <div class="modal-content border-0">
             <div class="modal-header border-bottom-0 ">
               <div class="ms-auto">
                 <h3 class="modal-title fs-3 ms-auto" id=<?= $value['category_name'] ?>>Catégorie : <?= $value['category_name'] ?></h3>
@@ -222,8 +224,11 @@
             <div class="modal-body d-flex flex-column align-items-center gap-3">
 
               <h4 class="fs-5 text-center">
-                <?= $value['subject_name'] ?>
+                <?= 'Topic : ' . $value['topic_name'] ?>
               </h4>
+              <h5 class="fs-5 text-center">
+                <?= 'Sujet : ' . $value['subject_name'] ?>
+              </h5>
 
               <?php if (isset($value["parent_post_id"]) && $value["parent_post_id"] > 0) {
                 foreach ($globalPosts as $key2 => $value2) {
@@ -310,7 +315,8 @@
 <div class="container mt-5 py-5 col-10 d-flex justify-content-center flex-column align-items-center gap-5">
 
   <div class="accordion mb-5 col-md-8 col-lg-6 col-xl-4" id="newSubject">
-    <div class="accordion-item">
+    <div class="accordion-item position-relative">
+      <div class="position-absolute top-0 start-50 translate-middle z-4 bg-white rounded-5 p-3 border">efeze</div>
       <h2 class="accordion-header " id="headingOne">
         <button class="accordion-button text-center fs-5 fw-bold collapsed shadow" type="button"
           data-bs-toggle="collapse" data-bs-target="#formSubject" aria-expanded="true" aria-controls="collapseOne">

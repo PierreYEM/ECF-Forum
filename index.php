@@ -6,6 +6,13 @@ session_start();
 require_once('./src/lib/database.php');
 
 try {
+    $path = $_SERVER['REQUEST_URI'];
+    /*  if (substr($path, -1) == '/') {
+    header("HTTP/1.1 301 Moved Permanently");
+    header("Location: " . substr($path, 0, -1));
+    exit();
+    } */
+
     if (isset($_GET["action"]) && $_GET["action"] !== "") {
 
         if ($_GET["action"] === "test_register") {

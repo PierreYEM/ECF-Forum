@@ -113,3 +113,7 @@ body {
     background-color: aquamarine;
     transition: ease-in-out 0.3s;
 }
+
+.z-4 {
+    z-index: 4;
+}
