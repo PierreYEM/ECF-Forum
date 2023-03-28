@@ -62,7 +62,8 @@ class Post extends Subject
             INNER JOIN `subjects` AS s ON p.subject_id = s.id
             INNER JOIN `topics` AS t ON s.topic_id=t.id
             INNER JOIN `users` AS u ON p.user_id=u.id
-            WHERE s.id=:id"
+            WHERE s.id=:id
+            ORDER by p.date "
 
         );
         $result->bindParam(':id', $subject_id);
@@ -133,7 +134,8 @@ class Post extends Subject
         INNER JOIN `subjects` AS s ON p.subject_id = s.id
         INNER JOIN `topics` AS t ON s.topic_id=t.id
         INNER JOIN `categories` AS c ON t.category_id=c.id
-        WHERE p.user_id=:id"
+        WHERE p.user_id=:id
+        ORDER by p.date "
 
         );
         $result->bindParam(':id', $user_id);

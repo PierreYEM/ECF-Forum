@@ -33,31 +33,12 @@ class Subject extends Topic
             "SELECT s.*,t.id AS topic_id,t.topic_name
               FROM `subjects` AS s
               INNER JOIN `topics` AS t ON s.topic_id = t.id
-             WHERE t.id=:topic_id"
+             WHERE t.id=:topic_id
+             ORDER by s.subject_date "
         );
 
         $result->bindParam(':topic_id', $topic_id);
         $result->execute();
-        return $result->fetchall(PDO::FETCH_ASSOC);
-
-    }
-
-
-    /* Méthode pour récupérer tous les posts d'un utilisateur*/
-    public function get_userPosts($user_id)
-    {
-        $result = (new DatabaseConnection())->getConnection()->prepare(
-
-            "SELECT p.*,s.subject_name,s.subject_author,c.category_name
-            FROM `posts` AS p
-            INNER JOIN subjects AS s ON p.subject_id=s.id
-            INNER JOIN categories AS c ON s.category_id=c.id
-            WHERE p.user_id=:id"
-
-        );
-        $result->bindParam(':id', $user_id);
-        $result->execute();
-
         return $result->fetchall(PDO::FETCH_ASSOC);
 
     }
@@ -103,7 +84,8 @@ class Subject extends Topic
             FROM `subjects` AS s
             INNER JOIN `topics` AS t ON s.topic_id=t.id
             INNER JOIN `categories` AS c ON t.category_id=c.id
-            WHERE s.user_id=:id"
+            WHERE s.user_id=:id
+            ORDER by s.subject_date "
 
         );
         $result->bindParam(':id', $user_id);

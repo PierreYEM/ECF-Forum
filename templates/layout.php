@@ -9,6 +9,7 @@
     <meta name="Forum pour chats démoniaques">
 
     <script src="./src/script/script.js" defer></script>
+    <!-- <script src="./src/script/fetch.js" defer></script> -->
 
     <!-- Fontstyle Satisfy -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

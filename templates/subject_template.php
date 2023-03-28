@@ -40,7 +40,7 @@
                 </div>
               </div>
             </div>
-            <button type="submit" name="new_post" class="btn btn-primary ">Poster</button>
+            <button type="submit" name="new_post" id="newPost" class="btn btn-primary">Poster</button>
 
           </form>
 
@@ -56,8 +56,8 @@
     ?>
 
     <div class="card col-8 mb-5">
-      <div class="card-body d-flex flex-column">
-        <div class="d-flex align-items-center p-3">
+      <div class="card-body d-flex flex-column px-5 py-4">
+        <div class="d-flex align-items-center pe-3 py-3 mb-4">
           <div class="col-1"><img class='img-fluid rounded' src="<?= $value['avatar'] ?>" alt="image avatar"></div>
           <h5 class="card-title ms-4 mb-0">
             <?= $value['post_author']; ?>
@@ -68,12 +68,12 @@
             if ($value['parent_post_id'] == $value2['id']) { ?>
               <p>En réponse à : </p>
               <div class="card col-8 mb-5">
-                <div class="card-body d-flex flex-column">
+                <div class="card-body d-flex flex-column ">
 
                   <h5 class="card-title">
                     <?= $value2['post_author']; ?>
                   </h5>
-                  <p class="card-text bg-body-tertiary">
+                  <p class="card-text bg-body-tertiary col-10 p-3 align-self-center">
                     <?= $value2['comment']; ?>
                   </p>
 
@@ -89,7 +89,7 @@
           }
         }
         ; ?>
-        <p class="card-text bg-body-tertiary">
+        <p class="card-text bg-body-tertiary col-10 p-3 align-self-center">
           <?= $value['comment']; ?>
         </p>
 
@@ -119,7 +119,7 @@
                 </div>
               </div>
               <input type="hidden" name="parent_post_id" value="<?= $value["id"] ?>">
-              <button type="submit" name="response" class="btn btn-primary ">Poster</button>
+              <button type="submit" name="response" class="btn btn-primary">Poster</button>
 
           </form>
         </div>

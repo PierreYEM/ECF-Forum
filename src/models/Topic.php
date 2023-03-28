@@ -30,7 +30,8 @@ class Topic extends Category
 
             "SELECT t.*,c.id AS category_id,c.category_name
             FROM `topics` AS t
-            INNER JOIN `categories` AS c ON t.category_id = c.id"
+            INNER JOIN `categories` AS c ON t.category_id = c.id
+            ORDER by t.topic_date "
 
         );
 
@@ -48,7 +49,8 @@ class Topic extends Category
             "SELECT t.*,c.id AS category_id,c.category_name
              FROM `topics` AS t
              INNER JOIN `categories` AS c ON t.category_id = c.id
-            WHERE c.id=:category_id"
+            WHERE c.id=:category_id
+            ORDER by t.topic_date "
         );
 
         $result->bindParam(':category_id', $category_id);
@@ -57,7 +59,7 @@ class Topic extends Category
 
     }
 
-    /* Méthode pour récupérer tous les sujets d'un utilisateur*/
+    /* Méthode pour récupérer tous les topics d'un utilisateur*/
     public function get_topics_by_user($user_id)
     {
         $result = (new DatabaseConnection())->getConnection()->prepare(
@@ -68,7 +70,8 @@ class Topic extends Category
                     c.id AS category_id
             FROM `topics` AS t
             INNER JOIN `categories` AS c ON t.category_id=c.id
-            WHERE t.user_id=:id"
+            WHERE t.user_id=:id
+            ORDER by t.topic_date "
 
         );
         $result->bindParam(':id', $user_id);
