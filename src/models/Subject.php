@@ -1,5 +1,5 @@
 <?php
-require_once('src/models/Topic.php');
+require_once('./src/models/Topic.php');
 class Subject extends Topic
 {
     public string $subject_id;

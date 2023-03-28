@@ -43,7 +43,9 @@
             <button type="submit" name="new_post" id="newPost" class="btn btn-primary">Poster</button>
 
           </form>
+          <div id="result">
 
+          </div>
 
         </div>
       </div>

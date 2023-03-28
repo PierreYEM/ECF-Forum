@@ -101,7 +101,7 @@
         <?= $content; ?>
     </div>
     <?php
-    /* echo 'SESSION';
+    echo 'SESSION';
     var_dump($_SESSION);
     echo 'DATA';
     var_dump($data);
@@ -118,7 +118,7 @@
     echo 'POST';
     var_dump($_POST);
     echo 'FILES';
-    var_dump($_FILES);  */ ?>
+    var_dump($_FILES);  ?>
     <footer class="z-3 d-flex flex-wrap justify-content-center align-items-center py-3 bg-footer sticky-bottom">
 
     </footer>

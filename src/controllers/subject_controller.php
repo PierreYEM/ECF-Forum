@@ -12,7 +12,6 @@ $post->user_id = $_SESSION['id'];
 $post->post_author = $_SESSION['name'];
 $posts = $post->get_posts_by_subject($post->subject_id);
 
-
 if (isset($_POST['new_post'])) {
 
     if (empty(check($_POST['comment']))) {

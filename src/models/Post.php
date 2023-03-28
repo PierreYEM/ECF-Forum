@@ -1,5 +1,5 @@
 <?php
-require_once('src/models/Subject.php');
+require_once('./src/models/Subject.php');
 class Post extends Subject
 {
     public string $post_id;
