@@ -55,7 +55,7 @@
         ?>
         <a href="index.php?subject_id=<?= $value['id'] ?>&subject_name=<?= $value['subject_name'] ?>"
           class="text-dark">
-          <div class="card shadow p-3 text-center">
+          <div class="card shadow p-3 text-center mb-4">
             <h3 class="fw-bold fs-5 m-0">
               <?= $value["subject_name"]; ?>
             </h3>

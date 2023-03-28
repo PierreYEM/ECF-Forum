@@ -26,29 +26,17 @@ if (isset($_SESSION) && !empty($_SESSION)) {
     exit;
 }
 
-/* $user = new User();
-$user->connection = new DatabaseConnection();
-$topic = new Topic();
-$topic->connection = new DatabaseConnection(); */
 $topics = $user->get_topics_by_user($user->user_id);
 
-/* $subject = new Subject();
-$subject->connection = new DatabaseConnection(); */
 $subjects = $user->get_subjects_by_user($user->user_id);
 
-/* $post = new Post();
-$post->connection = new DatabaseConnection(); */
 $posts = $user->get_posts_by_user($user->user_id);
 $globalPosts = $user->get_posts();
-
 
 /* Instructions pour modification de profil */
 if (isset($_POST["modify_profil"])) {
 
     /* On instancie la classe User pour créer un nouvel utilisateur */
-
-
-
     if (empty(check($_POST['name']))) {
         $user->user_name = $_SESSION["name"];
     } else {
@@ -127,8 +115,8 @@ if (isset($_POST["modify_profil"])) {
 /* Supprimer un topic */
 if (isset($_POST["delete_topic"])) {
 
-    $topic->topic_id = $_POST["topic_id"];
-    $topic->deleteTopic($topic->topic_id);
+    $user->topic_id = $_POST["topic_id"];
+    $user->deleteTopic($user->topic_id);
     header("Refresh:0");
     exit();
 }
@@ -136,8 +124,8 @@ if (isset($_POST["delete_topic"])) {
 /* Supprimer un sujet */
 if (isset($_POST["delete_subject"])) {
 
-    $subject->subject_id = $_POST["subject_id"];
-    $subject->deleteSubject($subject->subject_id);
+    $user->subject_id = $_POST["subject_id"];
+    $user->deleteSubject($user->subject_id);
     header("Refresh:0");
     exit();
 }
@@ -145,8 +133,8 @@ if (isset($_POST["delete_subject"])) {
 /* Supprimer un post */
 if (isset($_POST["delete_post"])) {
 
-    $post->post_id = $_POST["post_id"];
-    $post->deletePost($post->post_id);
+    $user->post_id = $_POST["post_id"];
+    $user->deletePost($user->post_id);
     header("Refresh:0");
     exit();
 }
@@ -154,16 +142,16 @@ if (isset($_POST["delete_post"])) {
 /* Modifier un topic */
 if (isset($_POST["modify_topic"])) {
 
-    $topic->topic_id = $_POST["topic_id"];
+    $user->topic_id = $_POST["topic_id"];
 
     /* Vérification du nouveau topic modifié */
     if (empty(check($_POST['edit_topic']))) {
         throw new Exception("Veuillez remplir le champs ");
     } else {
-        $topic->topic_name = filter_var($_POST['edit_topic'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $user->topic_name = filter_var($_POST['edit_topic'], FILTER_SANITIZE_SPECIAL_CHARS);
     }
 
-    $topic->updateTopic($topic->topic_name, $topic->topic_id);
+    $user->updateTopic($user->topic_name, $user->topic_id);
     header("Refresh:0");
     exit();
 }
@@ -171,16 +159,16 @@ if (isset($_POST["modify_topic"])) {
 /* Modifier un sujet */
 if (isset($_POST["modify_subject"])) {
 
-    $subject->subject_id = $_POST["subject_id"];
+    $user->subject_id = $_POST["subject_id"];
 
     /* Vérification du nouveau sujet modifié */
     if (empty(check($_POST['edit_subject']))) {
         throw new Exception("Veuillez remplir le champs ");
     } else {
-        $subject->subject_name = filter_var($_POST['edit_subject'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $user->subject_name = filter_var($_POST['edit_subject'], FILTER_SANITIZE_SPECIAL_CHARS);
     }
 
-    $subject->updateSubject($subject->subject_name, $subject->subject_id);
+    $user->updateSubject($user->subject_name, $user->subject_id);
     header("Refresh:0");
     exit();
 }
@@ -188,16 +176,16 @@ if (isset($_POST["modify_subject"])) {
 /* Modifier un post */
 if (isset($_POST["modify_post"])) {
 
-    $post->post_id = $_POST["post_id"];
+    $user->post_id = $_POST["post_id"];
 
     /* Vérification du nouveau commentaire modifié */
     if (empty(check($_POST['edit_comment']))) {
         throw new Exception("Veuillez remplir le champs ");
     } else {
-        $post->comment = filter_var($_POST['edit_comment'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $user->comment = filter_var($_POST['edit_comment'], FILTER_SANITIZE_SPECIAL_CHARS);
     }
 
-    $post->updatePost($post->comment, $post->post_id);
+    $user->updatePost($user->comment, $user->post_id);
 
     header("Refresh:0");
     exit();
