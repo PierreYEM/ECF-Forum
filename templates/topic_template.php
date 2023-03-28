@@ -5,14 +5,14 @@
 <?php ob_start(); ?>
 
 <main class="container d-flex flex-column align-items-center gap-4">
-  <h1 class="display-4 fst-italic fw-bold text-center mt-5">
+  <h1 class="display-4 fst-italic fw-bold text-center mt-5 text-info text-shadow-info">
     <?= $subject->topic_name ?>
   </h1>
 
   <div class="accordion mb-5 col-6" id="newSubject">
     <div class="accordion-item">
       <h2 class="accordion-header  " id="headingOne">
-        <button class="accordion-button text-center fs-5 fw-bold collapsed shadow" type="button"
+        <button class="accordion-button text-center fs-5 fw-bold collapsed border-0 whiteBorderFlash" type="button"
           data-bs-toggle="collapse" data-bs-target="#formSubject" aria-expanded="true" aria-controls="collapseOne">
           Nouveau sujet
         </button>
@@ -48,8 +48,8 @@
   </div>
 
 
-  <div class="col-12 p-4 mb-4 rounded-bottom border shadow">
-    <h2 class="text-center mb-4 fw-bold fs-2">Tous les sujets</h2>
+  <div class="col-12 p-4 mb-4 rounded border shadow-white">
+    <h2 class="text-center mb-4 fw-bold fs-2 text-info text-shadow-info">Tous les sujets</h2>
     <div class=" px-0 col-lg-8 mx-auto text-dark">
       <?php foreach ($subjects as $key => $value) {
         ?>

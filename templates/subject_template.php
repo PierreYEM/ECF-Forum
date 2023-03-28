@@ -4,15 +4,15 @@
 
 <?php ob_start(); ?>
 
-<main class="container d-flex flex-column align-items-center gap-5">
-  <h1 class="display-4 fst-italic fw-bold text-center ">
+<main class="container d-flex flex-column align-items-center gap-3">
+  <h1 class="display-4 fst-italic fw-bold text-center mt-5 text-info text-shadow-info">
     <?= $post->subject_name ?>
   </h1>
 
   <div class="accordion mb-5 col-6" id="newSubject">
-    <div class="accordion-item">
+    <div class="accordion-item mt-3">
       <h2 class="accordion-header  " id="headingOne">
-        <button class="accordion-button text-center fs-5 fw-bold collapsed shadow " type="button"
+        <button class="accordion-button text-center fs-5 fw-bold collapsed border-0 whiteBorderFlash " type="button"
           data-bs-toggle="collapse" data-bs-target="#formSubject" aria-expanded="true" aria-controls="collapseOne">
           Nouveau commentaire
         </button>
@@ -57,9 +57,12 @@
 
     <div class="card col-8 mb-5">
       <div class="card-body d-flex flex-column">
-        <h5 class="card-title">
-          <?= $value['post_author']; ?>
-        </h5>
+        <div class="d-flex align-items-center p-3">
+          <div class="col-1"><img class='img-fluid rounded' src="<?= $value['avatar'] ?>" alt="image avatar"></div>
+          <h5 class="card-title ms-4 mb-0">
+            <?= $value['post_author']; ?>
+          </h5>
+        </div>
         <?php if (isset($value["parent_post_id"]) && $value["parent_post_id"] > 0) {
           foreach ($posts as $key2 => $value2) {
             if ($value['parent_post_id'] == $value2['id']) { ?>

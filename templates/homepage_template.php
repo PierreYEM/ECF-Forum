@@ -4,20 +4,20 @@ Accueil
 
 <?php ob_start(); ?>
 
-<main class="container">
+<main class="container my-4">
 
 
-    <div class="p-4 p-md-4 rounded border shadow">
-        <h1 class="display-4 fst-italic fw-bold text-center mb-4">Toutes les catégories</h1>
+    <div class="p-4 p-md-4 rounded shadow-white">
+        <h1 class="display-4 fst-italic fw-bold text-center mb-4 text-info text-shadow-info">Toutes les catégories</h1>
 
         <div>
 
 
-            <div class="accordion mb-5 col-6 mx-auto" id="newSubject">
-                <div class="accordion-item">
+            <div class="accordion mb-5 col-6 mx-auto " id="newSubject">
+                <div class="accordion-item border-0 shadow-white">
                     <h2 class="accordion-header  " id="headingOne">
-                        <button class="accordion-button text-center fs-5 fw-bold collapsed shadow" type="button"
-                            data-bs-toggle="collapse" data-bs-target="#formSubject" aria-expanded="true"
+                        <button class="accordion-button text-center fs-5 fw-bold collapsed border-0 whiteBorderFlash"
+                            type="button" data-bs-toggle="collapse" data-bs-target="#formSubject" aria-expanded="true"
                             aria-controls="collapseOne">
                             Nouveau topic
                         </button>
@@ -25,15 +25,15 @@ Accueil
                     <!-- Partie étendue -->
                     <div id="formSubject" class="accordion-collapse collapse" aria-labelledby="headingOne"
                         data-bs-parent="#newSubject">
-                        <div class="accordion-body d-flex justify-content-center">
+                        <div class="accordion-body d-flex justify-content-center bg-dark bg-gradient rounded-bottom">
 
                             <form class="  col-md-12 col-lg-12 d-flex justify-content-center align-items-center"
                                 action="" method="post" style="height: auto;">
-                                <fieldset class="col-12 d-flex flex-column align-items-center justify-content-center"
+                                <fieldset class="col-6 d-flex flex-column align-items-center justify-content-center"
                                     <?php if (empty($_SESSION)) {
                                         echo "disabled";
                                     } ?>>
-             <div class="d-flex flex-column align-items-center justify-content-between col-12">
+                                    <div class="d-flex flex-column align-items-center justify-content-between col-12">
                                         <p class="fw-bold text-info">Entrez votre topic</p>
 
                                         <select class="form-select mb-3" aria-label="Default select example"

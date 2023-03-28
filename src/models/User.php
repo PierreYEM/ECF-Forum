@@ -1,23 +1,10 @@
 <?php
-
-class User
+require_once('src/models/Post.php');
+class User extends Post
 {
-    public string $id;
-    public string $name;
-    public string $mail;
-    public string $password;
-    public string $avatar;
-
-    public DatabaseConnection $connection;
-
-    public function __construct()
-    {
-        $this->id = "";
-        $this->name = "";
-        $this->mail = "";
-        $this->password = "";
-        $this->avatar = "";
-    }
+    public string $user_name;
+    public string $user_mail;
+    public string $user_password;
 
     public function createUser($name, $mail, $password)
     {
@@ -44,24 +31,18 @@ class User
         if ($result == null) {
             throw new Exception("Profil inexistant");
         }
-        $user = new User();
-        $user->id = $result["id"];
-        $user->name = $result["user_name"];
-        $user->mail = $result['mail'];
-        $user->password = $result['password'];
-        $user->avatar = $result['avatar'];
 
         if ($query->rowCount() == 0) {
             throw new Exception("L'utilisateur n'existe pas dans la base de données.");
         } else {
 
-            if (password_verify($password, $user->password)) {
+            if (password_verify($password, $result['password'])) {
                 session_start();
                 $_SESSION['logged'] = 1;
-                $_SESSION['id'] = $user->id;
-                $_SESSION['name'] = $user->name;
-                $_SESSION['mail'] = $user->mail;
-                $_SESSION['avatar'] = $user->avatar;
+                $_SESSION['id'] = $result["id"];
+                $_SESSION['name'] = $result["user_name"];
+                $_SESSION['mail'] = $result['mail'];
+                $_SESSION['avatar'] = $result['avatar'];
                 header("Location: index.php?action=account");
                 exit;
             } else {
@@ -87,20 +68,21 @@ class User
         );
         $query->bindParam(':id', $id);
         $query->execute();
-        $result = $query->fetch();
+       
         // Variables pour modifier les informations
-        return $result;
+        return $result = $query->fetch(PDO::FETCH_ASSOC);
     }
 
     /* Méthode pour modifier un utilisateur */
-    public function updateUser($name, $mail, $password)
+    public function updateUser($name, $mail, $password, $avatar)
     {
         $query = $this->connection->getConnection()->prepare(
-            "UPDATE users SET user_name = :name, mail = :mail, password = :password WHERE id = :id"
+            "UPDATE users SET user_name = :name, mail = :mail, password = :password, avatar=:avatar WHERE id = :id"
         );
         $query->bindParam(':name', $name);
         $query->bindParam(':mail', $mail);
         $query->bindParam(':password', $password);
+        $query->bindParam(':avatar', $avatar);
         $query->bindParam(':id', $_SESSION['id']);
         $query->execute();
         /* header("Location: ./index.php?action=account");

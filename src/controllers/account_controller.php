@@ -14,53 +14,55 @@ if (isset($_SESSION) && !empty($_SESSION)) {
     /* Remplir automatiquement le formulaire avec les informations de l'utilisateur en récupérant les données de l'utilisateur et en les appelant dans la vue */
 
     $user = new User();
-    $user->id = check($_SESSION["id"]);
+    $user->user_id = check($_SESSION["id"]);
     $user->connection = new DatabaseConnection();
-    $data = $user->getUser($user->id);
-    $user->name = $data["user_name"];
-    $user->mail = $data["mail"];
-
+    $data = $user->getUser($user->user_id);
+    $user->user_name = $data["user_name"];
+    $user->user_mail = $data["mail"];
+    $user->user_avatar = $data["avatar"];
 
 } else {
     header("Location: index.php?action=connect");
     exit;
 }
 
+/* $user = new User();
+$user->connection = new DatabaseConnection();
 $topic = new Topic();
-$topic->connection = new DatabaseConnection();
-$topics = $topic->get_topics_by_user($user->id);
+$topic->connection = new DatabaseConnection(); */
+$topics = $user->get_topics_by_user($user->user_id);
 
-$subject = new Subject();
-$subject->connection = new DatabaseConnection();
-$subjects = $subject->get_subjects_by_user($user->id);
+/* $subject = new Subject();
+$subject->connection = new DatabaseConnection(); */
+$subjects = $user->get_subjects_by_user($user->user_id);
 
-$post = new Post();
-$post->connection = new DatabaseConnection();
-$posts = $post->get_posts_by_user($user->id);
-$globalPosts = $post->get_posts();
+/* $post = new Post();
+$post->connection = new DatabaseConnection(); */
+$posts = $user->get_posts_by_user($user->user_id);
+$globalPosts = $user->get_posts();
 
 
 /* Instructions pour modification de profil */
 if (isset($_POST["modify_profil"])) {
 
     /* On instancie la classe User pour créer un nouvel utilisateur */
-    $newUser = new User();
+
 
 
     if (empty(check($_POST['name']))) {
-        $newUser->name = $_SESSION["name"];
+        $user->user_name = $_SESSION["name"];
     } else {
 
-        $newUser->name = filter_var($_POST['name'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $user->user_name = filter_var($_POST['name'], FILTER_SANITIZE_SPECIAL_CHARS);
     }
 
     if (empty(check($_POST['mail']))) {
-        $newUser->mail = $_SESSION["mail"];
+        $user->user_mail = $_SESSION["mail"];
     } else {
         if (!filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
             throw new Exception("L'adresse e-mail n'est pas valide");
         }
-        $newUser->mail = filter_var($_POST['mail'], FILTER_SANITIZE_EMAIL);
+        $user->user_mail = filter_var($_POST['mail'], FILTER_SANITIZE_EMAIL);
     }
 
     if (empty(check($_POST['password']))) {
@@ -77,19 +79,49 @@ if (isset($_POST["modify_profil"])) {
         if (strlen($password) < 8) {
             throw new Exception("Le mot de passe doit contenir au moins 8 caractères.");
         } else {
-            $newUser->password = password_hash($password, PASSWORD_DEFAULT);
+            $user->user_password = password_hash($password, PASSWORD_DEFAULT);
 
         }
     }
+    if (empty($_FILES['avatar']['tmp_name'])) {
+        $user->user_avatar = $data["avatar"];
+    } else {
+        /* Traitement du fichier uploadé */
+        $avatar_temp = $_FILES['avatar']['tmp_name'];
+        $avatar_name = $_FILES['avatar']['name'];
+        $url_avatar = './src/images/avatar/' . $avatar_name;
+        $pattern = '/^.*\.(jpeg|jpg|png)$/';
+        if (preg_match($pattern, $avatar_name)) {
+            $user->user_avatar = $url_avatar;
+            move_uploaded_file($avatar_temp, $url_avatar);
 
-    /* On définie la propriété connection  */
-    $newUser->connection = new DatabaseConnection();
+            if ($_FILES['avatar']['error']) {
+                switch ($_FILES['avatar']['error']) {
+                    case 1: // UPLOAD_ERR_INI_SIZE
+                        throw new Exception("Le fichier dépasse la limite autorisée par le serveur (fichier php.ini) !");
+
+                    case 2: // UPLOAD_ERR_FORM_SIZE
+                        throw new Exception("Le fichier dépasse la limite autorisée dans le formulaire HTML !");
+
+                    case 3: // UPLOAD_ERR_PARTIAL
+                        throw new Exception("L'envoi du fichier a été interrompu pendant le transfert !");
+
+                    case 4: // UPLOAD_ERR_NO_FILE
+                        throw new Exception("Le fichier que vous avez envoyé a une taille nulle !");
+
+                }
+            }
+        } else {
+            throw new Exception("Fichier invalide (seuls jpeg,jpg,png autorisés)");
+        }
+    }
+
 
     /* On créer l'utilisateur dans la base de données en passant par la méthode de classe */
-    $newUser->updateUser($newUser->name, $newUser->mail, $newUser->password);
-
-    header("Refresh:0");
-    exit();
+    $user->updateUser($user->user_name, $user->user_mail, $user->user_password, $user->user_avatar);
+    
+   /*  header("Refresh:0");
+    exit(); */
 }
 
 /* Supprimer un topic */
@@ -166,7 +198,7 @@ if (isset($_POST["modify_post"])) {
     }
 
     $post->updatePost($post->comment, $post->post_id);
- 
+
     header("Refresh:0");
     exit();
 }

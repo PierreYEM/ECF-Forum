@@ -51,7 +51,7 @@
 
                 <div class="d-flex align-items-center justify-content-center">
 
-                    <div class="ms-3  text-primary text-shadow fw-bold fs-2 fst-italic">
+                    <div class="ms-3  text-info text-shadow fw-bold fs-2 fst-italic">
                         Bla Bla Cat
                     </div>
                 </div>
@@ -96,12 +96,14 @@
 
     </header>
 
-    <div id="wrapper" class="d-flex align-items-center ">
+    <div id="wrapper" class="d-flex align-items-center bg-black bg-gradient">
         <?= $content; ?>
     </div>
     <?php
     echo 'SESSION';
     var_dump($_SESSION);
+    echo 'DATA';
+    var_dump($data);
     echo 'CATEGORIES';
     var_dump($categories);
     echo 'TOPICS';
@@ -113,7 +115,9 @@
     echo 'GET';
     var_dump($_GET);
     echo 'POST';
-    var_dump($_POST); ?>
+    var_dump($_POST);
+    echo 'FILES';
+    var_dump($_FILES);  ?>
     <footer class="z-3 d-flex flex-wrap justify-content-center align-items-center py-3 bg-footer sticky-bottom">
 
     </footer>

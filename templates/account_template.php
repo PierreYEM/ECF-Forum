@@ -12,11 +12,11 @@
 <?php ob_start(); ?>
 
 <div class="col-12">
-  <h2 class="text-center fw-bold ">Mes topics</h2>
-  <ul class="list-group">
+  <h2 class="text-center fw-bold text-info text-shadow-info mb-4">Mes topics</h2>
+  <ul class="list-group rounded overflow-hidden shadow-white">
     <?php foreach ($topics as $key => $value) { ?>
 
-      <li class="list-group-item d-flex justify-content-between align-items-center  p-3">
+      <li class="list-group-item d-flex justify-content-between align-items-center p-3">
         <p class="fw-bold m-0">
           <?= "Catégorie : " . $value["category_name"] ?>
         </p>
@@ -100,8 +100,8 @@
 <?php ob_start(); ?>
 
 <div class="col-12">
-  <h2 class="text-center fw-bold ">Mes sujets</h2>
-  <ul class="list-group">
+  <h2 class="text-center fw-bold text-info text-shadow-info mb-4">Mes sujets</h2>
+  <ul class="list-group rounded overflow-hidden shadow-white">
     <?php foreach ($subjects as $key => $value) { ?>
 
       <li class="list-group-item d-flex justify-content-between align-items-center  p-3">
@@ -190,8 +190,8 @@
 <?php ob_start(); ?>
 
 <div class="col-12">
-  <h2 class="text-center fw-bold ">Mes posts</h2>
-  <ul class="list-group">
+  <h2 class="text-center fw-bold text-info text-shadow-info mb-4">Mes posts</h2>
+  <ul class="list-group rounded overflow-hidden shadow-white">
     <?php foreach ($posts as $key => $value) { ?>
 
       <li class="list-group-item d-flex justify-content-between align-items-center p-3">
@@ -313,32 +313,36 @@
 
 <?php ob_start(); ?>
 <div class="container mt-5 py-5 col-10 d-flex justify-content-center flex-column align-items-center gap-5">
+  <div class=" bg-white rounded border overflow-hidden shadow-white my-4 col-3"><img src="<?= $user->user_avatar ?>"
+      alt="image avatar" class="img-fluid">
+  </div>
+  <div class="accordion mb-5 col-md-8 col-xl-6" id="newSubject">
 
-  <div class="accordion mb-5 col-md-8 col-lg-6 col-xl-4" id="newSubject">
-    <div class="accordion-item position-relative">
-      <div class="position-absolute top-0 start-50 translate-middle z-4 bg-white rounded-5 p-3 border">efeze</div>
+    <div class="accordion-item">
+
       <h2 class="accordion-header " id="headingOne">
         <button class="accordion-button text-center fs-5 fw-bold collapsed shadow" type="button"
           data-bs-toggle="collapse" data-bs-target="#formSubject" aria-expanded="true" aria-controls="collapseOne">
-          Vos informations
+          Mes informations
         </button>
       </h2>
       <div id="formSubject" class="accordion-collapse collapse" aria-labelledby="headingOne"
         data-bs-parent="#newSubject">
         <div class="accordion-body d-flex justify-content-center">
-          <form class="d-flex flex-column align-items-center col-10 col-md-12 col-lg-10 " action="" method="post">
+          <form class="d-flex flex-column align-items-center col-10 col-md-12 col-lg-10 " action="" method="post"
+            enctype="multipart/form-data">
             <div class="d-flex flex-column align-items-center justify-content-between col-12 col-md-8  col-lg-10 mt-3">
-              <div>
+              <div class="my-4">
                 <div class="mb-4 border rounded-2 position-relative">
                   <i class="fa-solid fa-cat ps-5 position-absolute top-50 translate-middle"></i>
                   <input name="name" type="text" class="form-control border-0 ps-5" id="name" aria-describedby="name"
-                    value="<?= $user->name ?>">
+                    value="<?= $user->user_name ?>">
                 </div>
 
                 <div class="mb-4  border rounded-2 position-relative">
                   <i class="fa-regular fa-envelope ps-5 position-absolute top-50 translate-middle"></i>
                   <input name="mail" type="email" class="form-control border-0 ps-5" id="mail" aria-describedby="mail"
-                    value="<?= $user->mail ?>">
+                    value="<?= $user->user_mail ?>">
                 </div>
 
                 <div class="mb-4 border rounded-2 position-relative">
@@ -353,6 +357,12 @@
                     aria-describedby="passwordConfirm" placeholder="confirmation">
                 </div>
 
+                <div class="d-flex flex-column align-items-center mb-3">
+                  <label for="formFile" class="form-label">Changer mon avatar</label>
+                  <input class="form-control" name="avatar" type="file" id="formFile"
+                    accept="image/jpeg,image/jpg,image/png">
+                </div>
+
               </div>
 
               <button type="submit" name="modify_profil" class="btn btn-primary col-6 ">Modifier</button>
@@ -364,8 +374,8 @@
         </div>
       </div>
     </div>
-  </div>
 
+  </div>
   <?= $userTopics ?>
 
   <?= $userSubjects ?>

@@ -47,7 +47,7 @@ footer {
 
 #wrapper {
     min-height: 80vh;
-    background-color: #F7F7F7;
+    /*  background: linear-gradient(180deg, #56cca0, #dde9b5); */
 }
 
 body {
@@ -102,7 +102,7 @@ body {
 
 .accordion-button:not(.collapsed) {
     background: linear-gradient(181deg, #3dc69c, #ebecb7);
-
+  animation: none;
 }
 
 .card {
@@ -116,4 +116,34 @@ body {
 
 .z-4 {
     z-index: 4;
+}
+
+.shadow-white {
+    box-shadow: 0 0 10px white;
+}
+
+.text-shadow-info {
+    text-shadow: 0 0 10px #0dcaf0;
+}
+
+.shadow-info {
+    box-shadow: 0 0 10px #0dcaf0;
+}
+
+@keyframes whiteBorderFlash {
+    0% {
+        box-shadow: 0 0 10px #ffffff;
+        /* background-color: #FFFFFF; */
+    }
+
+
+
+    100% {
+        box-shadow: 0 0 20px #ffffff;
+        /* background-color: #E0E0E0; */
+    }
+}
+
+.whiteBorderFlash {
+    animation: whiteBorderFlash infinite alternate 0.8s;
 }

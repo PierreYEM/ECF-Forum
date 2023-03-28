@@ -17,7 +17,7 @@ if (isset($_POST) && !empty($_POST)) {
         throw new Exception("Le pseudo de l'utilisateur est requis");
     } else {
         /* On défini une propriété de la classe en lui donnant comme valeur la valeur de l'input après vérification et validation */
-        $newUser->name = filter_var($_POST['name'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $newUser->user_name = filter_var($_POST['name'], FILTER_SANITIZE_SPECIAL_CHARS);
     }
 
     if (empty(check($_POST['mail']))) {
@@ -26,7 +26,7 @@ if (isset($_POST) && !empty($_POST)) {
         if (!filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
             throw new Exception("L'adresse e-mail n'est pas valide");
         }
-        $newUser->mail = filter_var($_POST['mail'], FILTER_SANITIZE_EMAIL);
+        $newUser->user_mail = filter_var($_POST['mail'], FILTER_SANITIZE_EMAIL);
     }
 
     if (empty(check($_POST['password']))) {
@@ -43,7 +43,7 @@ if (isset($_POST) && !empty($_POST)) {
         if (strlen($password) < 8) {
             throw new Exception("Le mot de passe doit contenir au moins 8 caractères.");
         } else {
-            $newUser->password = password_hash($password, PASSWORD_DEFAULT);
+            $newUser->user_password = password_hash($password, PASSWORD_DEFAULT);
 
         }
     }
@@ -52,7 +52,7 @@ if (isset($_POST) && !empty($_POST)) {
     $newUser->connection = new DatabaseConnection();
 
     /* On créer l'utilisateur dans la base de données en passant par la méthode de classe */
-    $newUser->createUser($newUser->name, $newUser->mail, $newUser->password);
+    $newUser->createUser($newUser->user_name, $newUser->user_mail, $newUser->user_password);
 
     /* Indicateur d'inscription réussie */
     $success = "Votre compte a été créé avec succès";
