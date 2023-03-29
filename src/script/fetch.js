@@ -19,7 +19,10 @@ newPost_form.addEventListener('submit', (e) => {
         console.log("vide");
 
         error.classList.add("display");
+        /* postCommentButton.classList.remove("shake-horizontal"); */
         postCommentButton.classList.add("shake-horizontal");
+        postCommentButton.addEventListener('animationend', () => postCommentButton.classList.remove("shake-horizontal"));
+
     } else {
         error.classList.remove("display");
 

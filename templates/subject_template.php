@@ -119,7 +119,7 @@
               </div>
               <input type="hidden" name="parent_post_id" value="<?= $value["id"] ?>">
               <button type="submit" name="response" class="btn btn-primary">Poster</button>
-
+              <p id="error" class="text-danger fw-bold mt-2 hidden">*Aucun commentaire</p>
           </form>
         </div>
       </div>
