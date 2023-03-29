@@ -1,6 +1,9 @@
+<script src="./src/script/fetch.js" defer></script>
+
 <?php
 
 require_once('./src/models/Post.php');
+require_once('./src/lib/functions.php');
 require_once('./src/lib/functions.php');
 
 /* Obtention de tous les sujets de la catégorie */
@@ -17,7 +20,7 @@ if (isset($_POST['new_post'])) {
     if (empty(check($_POST['comment']))) {
         throw new Exception("Veuillez remplir le champs ");
     } else {
-        $post->comment = filter_var($_POST['comment'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $post->comment = check(filter_var($_POST['comment'], FILTER_SANITIZE_SPECIAL_CHARS));
     }
     $post->parent_post_id = 0;
     $post->createPost($post->user_id, $post->subject_id, $post->comment, $post->post_author, $post->parent_post_id);

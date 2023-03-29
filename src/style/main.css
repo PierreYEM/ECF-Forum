@@ -102,7 +102,7 @@ body {
 
 .accordion-button:not(.collapsed) {
     background: linear-gradient(181deg, #3dc69c, #ebecb7);
-  animation: none;
+    animation: none;
 }
 
 .card {
@@ -110,7 +110,9 @@ body {
 }
 
 .card:hover {
-    background-color: aquamarine;
+    background: linear-gradient(270deg, #cc6aa5, #3e91cc, #2dcca7);
+    background-size: 600% 100%;
+    animation: bg-pan-left 2s infinite alternate both;
     transition: ease-in-out 0.3s;
 }
 
@@ -146,4 +148,82 @@ body {
 
 .whiteBorderFlash {
     animation: whiteBorderFlash infinite alternate 0.8s;
+}
+
+@keyframes newCom {
+    0% {
+        background-color: white;
+    }
+
+
+
+    50% {
+        background-color: aquamarine;
+    }
+
+    100% {
+        background-color: white;
+    }
+}
+
+.newComFlash {
+    animation: newCom 0.8s;
+}
+
+.hidden {
+    display: none;
+}
+
+.display {
+    display: block !important;
+}
+
+.shake-horizontal {
+
+    animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+}
+
+@keyframes shake-horizontal {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70% {
+        transform: translateX(-10px);
+    }
+
+    20%,
+    40%,
+    60% {
+        transform: translateX(10px);
+    }
+
+    80% {
+        transform: translateX(8px);
+    }
+
+    90% {
+        transform: translateX(-8px);
+    }
+}
+
+.bg-pan-left {
+
+    animation: bg-pan-left 8s infinite alternate both;
+}
+
+@keyframes bg-pan-left {
+    0% {
+        background-position: 100% 50%;
+    }
+
+  
+    100% {
+        background-position: 0% 50%;
+    }
 }

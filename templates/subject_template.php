@@ -23,7 +23,7 @@
 
           <!-- Contenu de l'accordéon -->
           <form class="  col-md-12 col-lg-12 d-flex flex-column justify-content-center align-items-center" action=""
-            method="post" style="height: auto;">
+            method="post" style="height: auto;" id="newPost">
 
             <div class="d-flex flex-column align-items-center justify-content-between col-12 col-md-8">
 
@@ -32,7 +32,7 @@
 
                   <label for="commentaire" class="fw-bold text-info">Mon commentaire :</label>
                   <div class="form-floating">
-                    <textarea class="form-control" placeholder="Leave a comment here" id="commentaire"
+                    <textarea class="form-control new-com" placeholder="Leave a comment here" id="commentaire"
                       name="comment"></textarea>
                     <label for="floatingTextarea" class="text-body-tertiary ">Mon commentaire</label>
                   </div>
@@ -40,12 +40,9 @@
                 </div>
               </div>
             </div>
-            <button type="submit" name="new_post" id="newPost" class="btn btn-primary">Poster</button>
-
+            <button type="submit" id="postCommentButton" name="new_post" class="btn btn-primary">Poster</button>
+            <p id="error" class="text-danger fw-bold mt-2 hidden">*Aucun commentaire</p>
           </form>
-          <div id="result">
-
-          </div>
 
         </div>
       </div>

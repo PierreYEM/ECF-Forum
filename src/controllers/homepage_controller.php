@@ -16,17 +16,20 @@ $topics = $topic->get_topics();
 
 
 if (isset($_POST['new_topic'])) {
+    if ($_POST["category_id"] == "Choisissez votre catégorie") {
+        throw new Exception("Choississez une catégorie");
 
+    }
     if (empty(check($_POST['topic_name']))) {
         throw new Exception("Un topic est requis");
     } else {
-        $topic->topic_name = filter_var($_POST['topic_name'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $topic->topic_name = check(filter_var($_POST['topic_name'], FILTER_SANITIZE_SPECIAL_CHARS));
     }
 
     $topic->user_id = $_SESSION['id'];
     $topic->topic_author = $_SESSION['name'];
     $topic->category_id = $_POST['category_id'];
-    $topic->topic_name = $_POST['topic_name'];
+
     $topic->createTopic($topic->category_id, $topic->user_id, $topic->topic_name, $topic->topic_author);
     header("Refresh:0");
     exit();

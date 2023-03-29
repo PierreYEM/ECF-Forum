@@ -1,15 +1,17 @@
 <?php
 /* require_once('./src/models/Post.php');
-
 $post = new Post();
 $post->connection = new DatabaseConnection();
-
-$subject=2;
+$subject = 2;
 $posts = $post->get_posts_by_subject($subject);
 header('Content-Type: application/json');
 echo json_encode($posts); */
 
-$subject = 2;
+$data = json_decode(file_get_contents('php://input'), true);
+$subject = $_POST["subject_id"];
+
+/* $comment = $_POST["comment"];
+ */
 $database = new PDO('mysql:host=localhost;dbname=forum;charset=utf8', 'root', '');
 $posts_by_subject_request = "SELECT 		
 p.*,
@@ -34,6 +36,4 @@ $posts_by_subject = $database->prepare($posts_by_subject_request);
 $posts_by_subject->bindParam(':id', $subject);
 $posts_by_subject->execute();
 $result = $posts_by_subject->fetch(PDO::FETCH_ASSOC);
-
-
 echo json_encode($result);

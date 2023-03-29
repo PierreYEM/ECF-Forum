@@ -16,7 +16,7 @@ if (isset($_POST['new_subject'])) {
     if (empty(check($_POST['subject_name']))) {
         throw new Exception("Un sujet est requis");
     } else {
-        $subject->subject_name = filter_var($_POST['subject_name'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $subject->subject_name = check(filter_var($_POST['subject_name'], FILTER_SANITIZE_SPECIAL_CHARS));
     }
     $subject->user_id = $_SESSION["id"];
     $subject->subject_author = $_SESSION["name"];

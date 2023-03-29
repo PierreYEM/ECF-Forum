@@ -1,3 +1,4 @@
+<script src="./src/script/script.js" defer></script>
 <?php $title = "Connexion"; ?>
 
 <?php ob_start(); ?>

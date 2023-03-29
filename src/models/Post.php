@@ -63,7 +63,7 @@ class Post extends Subject
             INNER JOIN `topics` AS t ON s.topic_id=t.id
             INNER JOIN `users` AS u ON p.user_id=u.id
             WHERE s.id=:id
-            ORDER by p.date "
+            ORDER by p.date DESC"
 
         );
         $result->bindParam(':id', $subject_id);
