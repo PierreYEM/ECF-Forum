@@ -69,7 +69,7 @@ class Post extends Subject
         $result->bindParam(':id', $subject_id);
         $result->execute();
 
-        return $result->fetchall(PDO::FETCH_ASSOC);
+        return $result->fetchAll(PDO::FETCH_ASSOC);
 
     }
 

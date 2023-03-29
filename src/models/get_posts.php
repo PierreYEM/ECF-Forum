@@ -29,11 +29,11 @@ INNER JOIN `subjects` AS s ON p.subject_id = s.id
 INNER JOIN `topics` AS t ON s.topic_id=t.id
 INNER JOIN `users` AS u ON p.user_id=u.id
 WHERE s.id=:id
-ORDER by p.date ";
+ORDER by p.date DESC";
 $posts_by_subject = $database->prepare($posts_by_subject_request);
 $posts_by_subject->bindParam(':id', $subject);
 $posts_by_subject->execute();
-$result = $posts_by_subject->fetchAll(PDO::FETCH_ASSOC);
+$result = $posts_by_subject->fetch(PDO::FETCH_ASSOC);
 
 
 echo json_encode($result);

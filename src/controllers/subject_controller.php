@@ -21,8 +21,8 @@ if (isset($_POST['new_post'])) {
     }
     $post->parent_post_id = 0;
     $post->createPost($post->user_id, $post->subject_id, $post->comment, $post->post_author, $post->parent_post_id);
-    header("Refresh:0");
-    exit();
+    /* header("Refresh:0");
+    exit(); */
 }
 
 if (isset($_POST['response'])) {
